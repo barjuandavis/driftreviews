@@ -1,11 +1,18 @@
 ---
 import { type Payment, columns } from "./Columns";
 import { DataTable } from "./DataTable";
-import { type Mouse } from "src/api/prismic";
+import { type MousePost } from "src/api/prismic";
+import MouseUICard from "src/components/mouse/MouseUICard.astro";
 
 const { mouseData } = Astro.props;
 
-const data = mouseData as Mouse[];
----
+const data = mouseData as MousePost[];
+console.log(data);
 
-<DataTable client:only="react" data={data} columns={columns} />
+//const cards = data.map((mouse) => (<MouseUICard data={mouse} />));
+
+
+---
+<!-- {cards}-->
+<MouseUICard data={data[0]} />
+

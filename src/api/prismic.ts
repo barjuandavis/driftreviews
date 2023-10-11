@@ -23,12 +23,17 @@ export type Mouse = {
   short_description: string;
   long_description: string[];
   review_content_embed: string;
-  affiliate_link: string;
+  affiliate_link: {
+    link_type: string,
+    url: string,
+    target: string
+  }
   body: any[];
 };
 
 export const getAllMouse = async () => {
   const prismicDoc = await client.getAllByType("mouse");
+  console.log("this is a prismicDoc", prismicDoc);
   const doc = prismicDoc.map((doc) => {
     return {
       id: doc.id,
