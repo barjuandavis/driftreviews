@@ -7,11 +7,36 @@ const client = prismic.createClient(repositoryName, {
   fetch,
 });
 
-export const initPrismic = async () => {
-  const prismicDoc = await client.getFirst();
-  console.log(prismicDoc);
-  const { mouse_name, rank } = prismicDoc.data;
-  const titleHTML = prismic.asHTML(mouse_name);
-  const descriptionHTML = rank as string;
-  console.log(titleHTML, descriptionHTML);
+export type MousePost = {
+  id: string;
+  first_publication_date: string;
+  last_publication_date: string;
+  lang: string;
+  data: Mouse;
+};
+
+export type Mouse = {
+  rank: string;
+  mouse_name_short: string;
+  mouse_shape_type: string;
+  mouse_name: string[];
+  short_description: string;
+  long_description: string[];
+  review_content_embed: string;
+  affiliate_link: string;
+  body: any[];
+};
+
+export const getAllMouse = async () => {
+  const prismicDoc = await client.getAllByType("mouse");
+  const doc = prismicDoc.map((doc) => {
+    return {
+      id: doc.id,
+      first_publication_date: doc.first_publication_date,
+      last_publication_date: doc.last_publication_date,
+      lang: doc.lang,
+      data: doc.data,
+    } as MousePost;
+  });
+  return doc;
 };

@@ -8,6 +8,7 @@ specifiers:
   '@astrojs/tailwind': ^5.0.0
   '@prismicio/client': ^7.2.0
   '@radix-ui/react-navigation-menu': ^1.1.4
+  '@tanstack/react-table': ^8.10.3
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
   astro: ^3.2.0
@@ -20,7 +21,7 @@ specifiers:
   react: ^18.0.0
   react-dom: ^18.0.0
   tailwind-merge: ^1.14.0
-  tailwindcss: ^3.0.24
+  tailwindcss: ^3.3.3
   tailwindcss-animate: ^1.0.7
 
 dependencies:
@@ -31,6 +32,7 @@ dependencies:
   '@astrojs/tailwind': 5.0.0_ncnrcbkqr56oahlx2ptlen744y
   '@prismicio/client': 7.2.0
   '@radix-ui/react-navigation-menu': 1.1.4_w2t4jfowrdz4rm4uaz5cwoqleu
+  '@tanstack/react-table': 8.10.3_biqbaboplfbrettd7655fr4n2y
   '@types/react': 18.2.23
   '@types/react-dom': 18.2.8
   astro: 3.2.0
@@ -1237,6 +1239,23 @@ packages:
       '@types/react-dom': 18.2.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@tanstack/react-table/8.10.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Qya1cJ+91arAlW7IRDWksRDnYw28O446jJ/ljkRSc663EaftJoBCAU10M+VV1K6MpCBLrXq1BD5IQc1zj/ZEjA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      '@tanstack/table-core': 8.10.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@tanstack/table-core/8.10.3:
+    resolution: {integrity: sha512-hJ55YfJlWbfzRROfcyA/kC1aZr/shsLA8XNAwN8jXylhYWGLnPmiJJISrUfj4dMMWRiFi0xBlnlC7MLH+zSrcw==}
+    engines: {node: '>=12'}
     dev: false
 
   /@types/acorn/4.0.6:

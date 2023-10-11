@@ -1,0 +1,11 @@
+---
+import { type Payment, columns } from "./Columns";
+import { DataTable } from "./DataTable";
+import { type Mouse } from "src/api/prismic";
+
+const { mouseData } = Astro.props;
+
+const data = mouseData as Mouse[];
+---
+
+<DataTable client:only="react" data={data} columns={columns} />
