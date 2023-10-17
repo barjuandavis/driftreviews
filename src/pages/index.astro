@@ -6,8 +6,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getAllMouse } from "../api/prismic";
 
 import Table from "src/components/Table.astro";
+import NewMouseList from "src/components/NewMouseList.tsx";
 
-const mouseData = (await getAllMouse()).map((mouseData) => mouseData.data);
+const mouseData = (await getAllMouse()).map((mouseData) => mouseData);
 ---
 
 <!doctype html>
@@ -32,7 +33,7 @@ const mouseData = (await getAllMouse()).map((mouseData) => mouseData.data);
         <li>C Rank (Pikir Dulu Sebelum Beli)</li>
         <li>F Rank (Gausah beli)</li>
       </ul>
-      <Table mouseData={mouseData} />
+      <NewMouseList mouseData={mouseData}  />
       <Footer />
 
       <style>

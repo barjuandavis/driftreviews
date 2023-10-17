@@ -1,8 +1,6 @@
 ---
-import { type Payment, columns } from "./Columns";
-import { DataTable } from "./DataTable";
 import { type MousePost } from "src/api/prismic";
-import MouseUICard from "src/components/mouse/MouseUICard.astro";
+import MouseUICard from "src/components/mouse/MouseUICard.tsx";
 
 const { mouseData } = Astro.props;
 
@@ -11,8 +9,29 @@ console.log(data);
 
 //const cards = data.map((mouse) => (<MouseUICard data={mouse} />));
 
+let currentInput = "";
+
+
 
 ---
-<!-- {cards}-->
-<MouseUICard data={data[0]} />
+<!-- add a search bar before cards -->
+<input type="text" id="search" name="search" placeholder="Search for a mouse" />
+<div class="cards">
+    {data.map((mouse) => (<MouseUICard data={mouse} />))}
+</div>
+
+<style>
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 -1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%; 
+  gap: 1rem; 
+}
+</style>
+
+
 

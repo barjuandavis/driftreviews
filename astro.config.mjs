@@ -8,5 +8,5 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://driftreviews.online',
-  integrations: [mdx(), sitemap(), react(), tailwind()]
+  integrations: [react(), mdx(), sitemap(), tailwind()]
 });
