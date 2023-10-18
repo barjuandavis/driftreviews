@@ -1,10 +1,7 @@
-import { useState } from "react";
+import NewMouseList from "../components/NewMouseList";
 import "./App.css";
-import { SITE_TITLE } from "../consts";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       {/* <Header title={SITE_TITLE} /> */}
@@ -23,10 +20,8 @@ function App() {
           <li>C Rank (Pikir Dulu Sebelum Beli)</li>
           <li>F Rank (Gausah beli)</li>
         </ul>
+        <NewMouseList />
         {/*      
-     <NewMouseList 
-      client:only="react"
-     />
      
       <Footer /> */}
         <style>
