@@ -1,4 +1,5 @@
 import * as React from "react";
+import DiscordIcon from 'public/discord-icon-svgrepo-com.svg?raw'
 
 import { cn } from "src/utils";
 
@@ -11,44 +12,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "src/components/ui/navigation-menu";
+import { Fragment } from "astro/dist/runtime/server";
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
 
 export default function NavigationMenuDemo() {
   return (
@@ -57,6 +22,16 @@ export default function NavigationMenuDemo() {
         <NavigationMenuItem>
           <NavigationMenuLink href="/" className={navigationMenuTriggerStyle()}>
             List Rekomendasi Mouse
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/" target="_blank" className={navigationMenuTriggerStyle()}>
+            <Fragment set:html={DiscordIcon} ></Fragment>Discord 
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="https://instagram.com/barjuandavis" target="_blank" className={navigationMenuTriggerStyle()}>
+            Instagram
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

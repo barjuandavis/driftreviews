@@ -3,12 +3,10 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import { getAllMouse } from "../api/prismic";
 
-import Table from "src/components/Table.astro";
+import OldMouseList from "src/components/OldMouseList.astro";
 import NewMouseList from "src/components/NewMouseList.tsx";
 
-const mouseData = (await getAllMouse()).map((mouseData) => mouseData);
 ---
 
 <!doctype html>
@@ -33,7 +31,11 @@ const mouseData = (await getAllMouse()).map((mouseData) => mouseData);
         <li>C Rank (Pikir Dulu Sebelum Beli)</li>
         <li>F Rank (Gausah beli)</li>
       </ul>
-      <NewMouseList mouseData={mouseData}  />
+     
+     <NewMouseList 
+      client:only="react"
+     />
+     
       <Footer />
 
       <style>

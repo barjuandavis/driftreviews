@@ -1,23 +1,15 @@
 ---
 import { type MousePost } from "src/api/prismic";
 import MouseUICard from "src/components/mouse/MouseUICard.tsx";
+import { getAllMouse } from "../api/prismic";
 
-const { mouseData } = Astro.props;
-
-const data = mouseData as MousePost[];
-console.log(data);
-
-//const cards = data.map((mouse) => (<MouseUICard data={mouse} />));
-
-let currentInput = "";
-
-
+const mouseData = (await getAllMouse()).map((mouseData) => mouseData);
 
 ---
 <!-- add a search bar before cards -->
 <input type="text" id="search" name="search" placeholder="Search for a mouse" />
 <div class="cards">
-    {data.map((mouse) => (<MouseUICard data={mouse} />))}
+    {mouseData.map((mouse) => (<MouseUICard mousePost={mouse} />))}
 </div>
 
 <style>

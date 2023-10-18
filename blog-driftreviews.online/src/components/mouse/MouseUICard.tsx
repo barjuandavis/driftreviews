@@ -1,6 +1,6 @@
 
 import { type MousePost } from "src/api/prismic";
-import "./mousecardstyles.css";
+// import "./mousecardstyles.css";
 
 type MouseUICardProps = {
   mousePost: MousePost;
@@ -10,7 +10,7 @@ export default function MouseUICard(props: MouseUICardProps) {
 
   return (
     <a 
-        href={data?.}
+        href={data?.affiliate_link.url}
         target="_blank"
         rel="noopener noreferrer"
     className="card">
