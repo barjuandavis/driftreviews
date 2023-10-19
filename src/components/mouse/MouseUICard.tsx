@@ -1,4 +1,5 @@
 import { type MousePost } from "../../api/prismic";
+import Badge from "./MouseBadge";
 import "./mousecardstyles.css";
 
 type MouseUICardProps = {
@@ -15,6 +16,7 @@ export default function MouseUICard(props: MouseUICardProps) {
       className="card"
     >
       <div className="card-image-container">
+        <Badge rank={data.rank} />
         <img
           className="card__image"
           src={data?.mouse_image.url}

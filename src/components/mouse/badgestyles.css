@@ -1,0 +1,14 @@
+.badge {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0 0 0.5rem;
+  background: #fff;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+}
+.badge--s {
+  color: #ff3b3b;
+  background: hsl(from color h s l);
+}
+
+/* Position the badge within the container */
