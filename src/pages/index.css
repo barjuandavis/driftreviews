@@ -10,6 +10,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: rgb(189, 208, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(189, 208, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
 h1 {
