@@ -6,10 +6,21 @@ import { getAllMouse } from "../api/prismic";
 import { Input } from "./ui/input";
 import { AnimatePresence } from "framer-motion";
 import MouseNotFoundSection from "./mouse/MouseNotFoundSection";
+
+import FilterSection from "./sections/FilterSection";
+
 const mouseData = await getAllMouse();
 
 export default function NewMouseList() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterButtonOpened, setFilterButtonOpened] = useState(false);
+  // const [filters, setFilters] = useState<Filters>({
+  //   brands: [],
+  //   valueRating: [],
+  //   priceRange: [],
+  // });
+  console.log(mouseData);
+
   const filteredMouse = mouseData.filter((mouse) => {
     return mouse.data.mouse_name_short
       .toLowerCase()
@@ -28,11 +39,19 @@ export default function NewMouseList() {
         {/* put a filter button in this div */}
         <button
           type="button"
-          className="md:w-1/4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-1/2 justify-center"
+          onClick={() => {
+            setFilterButtonOpened(!filterButtonOpened);
+          }}
+          className="link-button"
         >
           Filter
         </button>
       </div>
+      <FilterSection
+        opened={filterButtonOpened}
+        setOpen={setFilterButtonOpened}
+        mouseData={mouseData}
+      />
 
       <div className="flex flex-wrap justify-evenly max-w-800 my-4 mx-auto w-full gap-4">
         <AnimatePresence>

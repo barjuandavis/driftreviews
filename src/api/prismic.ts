@@ -39,10 +39,25 @@ export type ReviewContentEmbed = {
   embed_url: string;
 };
 
+export type MouseBrand = {
+  id: string;
+  type: string;
+  tags: string[];
+  lang: string;
+  slug: string;
+  first_publication_date: string;
+  last_publication_date: string;
+  link_type: string;
+  isBroken: boolean;
+};
+
 export type Mouse = {
   rank: string;
+  brand: MouseBrand;
   mouse_name_short: string;
   mouse_shape_type: string;
+  price_range: string;
+  value_rating: string;
   mouse_name: string[];
   mouse_image: MouseImage;
   short_description: string;

@@ -26,8 +26,8 @@ export default function VariousLinksSection(props: { opened: boolean }) {
           type="tokopedia"
         />
         <LinkButton
-          href="https://tokopedia.link/4VZ9ZQYYSBb"
-          content="Mousepad"
+          href="https://tokopedia.link/sz3CkOEixBb"
+          content="USB Extension"
           type="tokopedia"
         />
       </div>

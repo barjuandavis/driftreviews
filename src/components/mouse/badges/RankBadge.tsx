@@ -47,11 +47,11 @@ const getBadgeClassName = (rank: string) => {
   );
 };
 
-export default function Badge(props: BadgeProps) {
+export default function RankBadge(props: BadgeProps) {
   const { rank } = props;
   const badgeClassName = getBadgeClassName(rank);
   return (
-    <div className={`badge ${badgeClassName.className}`}>
+    <div className={`rank-badge ${badgeClassName.className}`}>
       <span className="letter">{badgeClassName.letter}</span>
       <span>Rank</span>
     </div>
