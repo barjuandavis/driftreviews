@@ -1,14 +1,48 @@
 .badge {
   position: absolute;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 0 0 0.5rem;
+  padding: 0.7rem;
+  margin: 0.8rem 0 0 0.8rem;
   background: #fff;
   border-radius: 1rem;
   font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.7rem;
 }
+.badge > .letter {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1rem;
+}
+
 .badge--s {
-  color: #ff3b3b;
-  background: hsl(from color h s l);
+  color: #dd0000;
+  background: #ffc1c1;
+}
+
+.badge--a {
+  /*shade of green */
+  color: #019901;
+  background: #c1ffc1;
+}
+
+.badge--b {
+  /*shade of blue */
+  color: #0000dd;
+  background: #c1c1ff;
+}
+
+.badge--c {
+  /*shade of purple */
+  color: #7f007f;
+  background: #ffc1ff;
+}
+
+.badge--f {
+  /*shade  of grey */
+  color: #535353;
+  background: #a0a0a0;
 }
 
 /* Position the badge within the container */

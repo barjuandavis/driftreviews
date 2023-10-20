@@ -69,6 +69,11 @@ h1 {
   color: white;
 }
 
+.youtube {
+  background: rgb(255, 0, 0) !important;
+  color: white;
+}
+
 .chevron {
   width: 1rem;
   height: 1rem;

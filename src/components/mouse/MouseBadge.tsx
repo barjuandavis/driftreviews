@@ -7,22 +7,27 @@ const getBadgeClassName = (rank: string) => {
   const ranks = [
     {
       name: "S Rank",
+      letter: "S",
       className: "badge--s",
     },
     {
       name: "A Rank",
+      letter: "A",
       className: "badge--a",
     },
     {
       name: "B Rank",
+      letter: "B",
       className: "badge--b",
     },
     {
       name: "C Rank",
+      letter: "C",
       className: "badge--c",
     },
     {
       name: "F Rank",
+      letter: "F",
       className: "badge--f",
     },
   ];
@@ -33,11 +38,22 @@ const getBadgeClassName = (rank: string) => {
       break;
     }
   }
-  return rankObj?.className ?? "badge--f";
+  return (
+    rankObj ?? {
+      name: "F Rank",
+      letter: "F",
+      className: "badge--f",
+    }
+  );
 };
 
 export default function Badge(props: BadgeProps) {
   const { rank } = props;
   const badgeClassName = getBadgeClassName(rank);
-  return <p className={`badge ${badgeClassName}`}>{rank}</p>;
+  return (
+    <div className={`badge ${badgeClassName.className}`}>
+      <span className="letter">{badgeClassName.letter}</span>
+      <span>Rank</span>
+    </div>
+  );
 }
