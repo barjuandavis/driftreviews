@@ -30,3 +30,8 @@ export function generatePriceRanges() {
 export function generateRanks() {
   return ["S Rank", "A Rank", "B Rank", "C Rank", "F Rank"];
 }
+
+export function convertRankIntoNumber(rank: string) {
+  //use index + 1
+  return generateRanks().indexOf(rank) + 1;
+}

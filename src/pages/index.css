@@ -2,6 +2,7 @@
   font-family: Lato, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 16px;
 }
 
 body {
@@ -55,15 +56,8 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+@media (max-width: 600px) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    font-size: 14px;
   }
 }

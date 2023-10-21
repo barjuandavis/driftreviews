@@ -53,3 +53,8 @@ const useFilterStore = create<FiltersState>()((set) => ({
 }));
 
 export default useFilterStore;
+
+export function checkIfFiltersAreEmpty() {
+  const filters = useFilterStore.getState().filters;
+  return Object.values(filters).every((filter) => filter.length === 0);
+}
