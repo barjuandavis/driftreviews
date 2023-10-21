@@ -8,32 +8,34 @@ import { AnimatePresence } from "framer-motion";
 import MouseNotFoundSection from "./mouse/MouseNotFoundSection";
 
 import FilterSection from "./sections/FilterSection";
-import { Filters } from "@/lib/processFilters";
+
+import useFilterStore from "@/lib/filterStore";
 
 const mouseData = await getAllMouse();
 
 export default function NewMouseList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterButtonOpened, setFilterButtonOpened] = useState(false);
-  const [filters, setFilters] = useState<Filters>({
-    brands: [],
-    valueRating: [],
-    priceRange: [],
-    shapes: [],
+  const filters = useFilterStore((state) => state.filters);
+
+  const filteredMouse = mouseData.filter((mouse) => {
+    const checks = [
+      mouse.data.mouse_name_short
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()),
+      filters.brands.includes(mouse.data.brand.tags[0]) ||
+        filters.brands.length === 0,
+      filters.priceRange.includes(mouse.data.price_range) ||
+        filters.priceRange.length === 0,
+      filters.shapes.includes(mouse.data.mouse_shape_type) ||
+        filters.shapes.length === 0,
+      filters.valueRating.includes(mouse.data.value_rating) ||
+        filters.valueRating.length === 0,
+    ];
+    //check if every "checks" statements is true
+    return checks.reduce((acc, curr) => acc && curr, true);
   });
 
-  const filteredMouse = mouseData
-    .filter((mouse) => {
-      return mouse.data.mouse_name_short
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-    })
-    .filter((mouse) => {
-      if (filters.brands.length === 0) {
-        return true;
-      }
-      return filters.brands.includes(mouse.data.brand.tags[0]);
-    });
   return (
     <div className="flex flex-col gap-4 w-full">
       <Input
@@ -44,7 +46,6 @@ export default function NewMouseList() {
         }}
       />
       <div>
-        {/* put a filter button in this div */}
         <button
           type="button"
           onClick={() => {
@@ -59,8 +60,6 @@ export default function NewMouseList() {
         opened={filterButtonOpened}
         setOpen={setFilterButtonOpened}
         mouseData={mouseData}
-        filters={filters}
-        setFilters={setFilters}
       />
 
       <div className="flex flex-wrap justify-evenly max-w-800 my-4 mx-auto w-full gap-4">

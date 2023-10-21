@@ -1,9 +1,9 @@
-import { FilterTypes, Filters } from "./processFilters";
+import useFilterStore, { FilterTypes } from "./filterStore";
 
 export default function getCurrentFilterValueState(
   value: string,
-  whatToFilter: FilterTypes,
-  filters: Filters
+  whatToFilter: FilterTypes
 ) {
+  const filters = useFilterStore.getState().filters;
   return filters[whatToFilter].indexOf(value) !== -1;
 }
