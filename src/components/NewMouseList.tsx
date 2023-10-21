@@ -45,7 +45,10 @@ export default function NewMouseList() {
       return (
         convertRankIntoNumber(a.data.rank) - convertRankIntoNumber(b.data.rank)
       );
-    });
+    })
+    .sort(
+      (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating)
+    );
 
   const filterIsEmpty = checkIfFiltersAreEmpty();
 
@@ -90,7 +93,7 @@ export default function NewMouseList() {
         mouseData={mouseData}
       />
 
-      <div className="flex flex-wrap justify-evenly max-w-800 my-4 mx-auto w-full gap-4">
+      <div className="flex flex-wrap justify-center max-w-800 my-4 mx-auto w-full gap-4">
         <AnimatePresence>
           {filteredMouse.length > 0 ? (
             filteredMouse.map((mouse) => (

@@ -28,7 +28,7 @@ function App() {
             />
           </div>
           <VariousLinksSection opened={variousLinksOpened} />
-          <About opened={aboutOpened} />
+          <About opened={aboutOpened} setOpen={setAboutOpened} />
         </div>
         <NewMouseList />
       </main>

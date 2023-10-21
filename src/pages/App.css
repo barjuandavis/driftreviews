@@ -69,6 +69,11 @@ h1 {
   color: white;
 }
 
+.shopee {
+  background: linear-gradient(-180deg, #f53d2d, #f63) !important;
+  color: white;
+}
+
 .youtube {
   background: rgb(255, 0, 0) !important;
   color: white;
