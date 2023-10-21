@@ -31,6 +31,7 @@ export default function NewMouseList() {
         filters.shapes.length === 0,
       filters.valueRating.includes(mouse.data.value_rating) ||
         filters.valueRating.length === 0,
+      filters.ranks.includes(mouse.data.rank) || filters.ranks.length === 0,
     ];
     //check if every "checks" statements is true
     return checks.reduce((acc, curr) => acc && curr, true);
