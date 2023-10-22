@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import MouseUICard from "../components/mouse/MouseUICard";
 
-import { getAllMouse } from "../api/prismic";
+import { MousePost, getAllMouse } from "../api/prismic";
 import { Input } from "./ui/input";
 import { AnimatePresence } from "framer-motion";
 import MouseNotFoundSection from "./mouse/MouseNotFoundSection";
@@ -14,13 +14,20 @@ import FilterFilledSvg from "../assets/filter-isi.svg?react";
 import useFilterStore, { checkIfFiltersAreEmpty } from "@/lib/filterStore";
 import { convertRankIntoNumber } from "@/lib/generateValues";
 
-const mouseData = await getAllMouse();
-
 export default function NewMouseList() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [mouseData, setMouseData] = useState<MousePost[]>([] as MousePost[]);
   const [filterButtonOpened, setFilterButtonOpened] = useState(false);
   const filters = useFilterStore((state) => state.filters);
   const resetFilters = useFilterStore((state) => state.resetFilterValues);
+
+  useEffect(() => {
+    const fetchMouseData = async () => {
+      const mouseData = await getAllMouse();
+      setMouseData(mouseData);
+    };
+    fetchMouseData();
+  }, []);
 
   const filteredMouse = mouseData
     .filter((mouse) => {
