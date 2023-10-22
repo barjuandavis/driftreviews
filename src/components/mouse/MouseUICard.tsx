@@ -56,9 +56,11 @@ export default function MouseUICard(props: MouseUICardProps) {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={data?.affiliate_link.url}
+            href={data?.affiliate_link?.url}
             className={
-              data?.affiliate_link.url.includes("shope.ee")
+              data?.affiliate_link?.url === undefined
+                ? "link-button disabled-link-button"
+                : data?.affiliate_link.url.includes("shope.ee")
                 ? "link-button shopee"
                 : "link-button tokopedia"
             }

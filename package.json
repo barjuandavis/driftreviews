@@ -12,6 +12,7 @@
   "dependencies": {
     "@prismicio/client": "^7.3.1",
     "@uidotdev/usehooks": "^2.4.0",
+    "analytics": "^0.8.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",

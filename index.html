@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/drift.svg" />
     <link rel="stylesheet" href="/src/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="DRiFT | Rekomendasi Mouse Gaming TERLENGKAP" />
@@ -12,15 +12,15 @@
     />
     <meta
       name="description"
-      content="DRiFT adalah sebuah website yang berisi rekomendasi mouse gaming terlengkap. DRiFT juga menyediakan berbagai macam informasi seputar mouse gaming."
+      content="DRiFT adalah sebuah website yang berisi rekomendasi mouse gaming terlengkap di Indonesia. DRiFT juga menyediakan berbagai macam informasi seputar mouse gaming ."
     />
     <title></title>
     <script>
       //generate current year
       const currentYear = new Date().getFullYear();
-      document.querySelector(
-        "title"
-      ).innerText = `DRiFT | Rekomendasi Mouse Gaming TERLENGKAP di ${currentYear}`;
+      const title = `DRiFT | Rekomendasi Mouse Gaming TERLENGKAP di ${currentYear}`;
+      document.querySelector("title").innerText = title;
+      document.querySelector("meta[name='title']").content = title;
     </script>
   </head>
   <body>
