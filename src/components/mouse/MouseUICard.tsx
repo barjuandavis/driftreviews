@@ -65,7 +65,11 @@ export default function MouseUICard(props: MouseUICardProps) {
                 : "link-button tokopedia"
             }
           >
-            <b>GAS CHECKOUT 🔥</b>
+            <b>
+              {data?.affiliate_link?.url === undefined
+                ? "Barangnya abis 🥲"
+                : "GAS CHECKOUT 🔥"}
+            </b>
           </a>
 
           <a
