@@ -32,6 +32,13 @@ jobs:
           VITE_PRISMIC_PERMANENT_TOKEN: ${{ secrets.VITE_PRISMIC_PERMANENT_TOKEN }}
         if: ${{ env.HAVE_PRISMIC_TOKEN == 'true' }}
         run: pnpm run build
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
   deploy:
     needs:
       build
