@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewMouseList from "../components/NewMouseList";
 import "./App.css";
 import About from "../components/about/About";
 
+import posthog from "posthog-js";
 import SlideoutButton from "@/components/sections/SlideoutButton";
 import VariousLinksSection from "@/components/sections/VariousLinksSection";
 
 function App() {
+  useEffect(() => {
+    posthog.capture("Homepage Viewed");
+  }, []);
+
   const [aboutOpened, setAboutOpened] = useState(false);
   const [variousLinksOpened, setVariousLinksOpened] = useState(false);
 

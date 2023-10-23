@@ -7,6 +7,8 @@ import MouseShapeBadge, { MouseShapes } from "./badges/MouseShapeBadge";
 import ValueRatingBadge, { ValueRatings } from "./badges/ValueRatingBadge";
 import TiktokSvg from "../../assets/tiktok.svg?react";
 
+import posthog from "posthog-js";
+
 import "./mousecardstyles.css";
 
 type MouseUICardProps = {
@@ -56,6 +58,12 @@ export default function MouseUICard(props: MouseUICardProps) {
           <a
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              posthog.capture("Affiliate Link Clicked", {
+                mouse_name: data?.mouse_name_short,
+                affiliate_link: data?.affiliate_link?.url,
+              });
+            }}
             href={data?.affiliate_link?.url}
             className={
               data?.affiliate_link?.url === undefined
@@ -74,6 +82,12 @@ export default function MouseUICard(props: MouseUICardProps) {
 
           <a
             href={data?.review_content_embed?.embed_url}
+            onClick={() => {
+              posthog.capture("Tiktok Link Clicked", {
+                mouse_name: data?.mouse_name_short,
+                tiktok_link: data?.review_content_embed?.embed_url,
+              });
+            }}
             target="_blank"
             rel="noopener noreferrer"
             className="link-button tiktok"

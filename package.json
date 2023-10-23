@@ -12,11 +12,11 @@
   "dependencies": {
     "@prismicio/client": "^7.3.1",
     "@uidotdev/usehooks": "^2.4.0",
-    "analytics": "^0.8.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.288.0",
+    "posthog-js": "^1.84.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^1.14.0",

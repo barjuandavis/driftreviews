@@ -11,9 +11,6 @@ dependencies:
   '@uidotdev/usehooks':
     specifier: ^2.4.0
     version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
-  analytics:
-    specifier: ^0.8.9
-    version: 0.8.9(@types/dlv@1.1.3)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -26,6 +23,9 @@ dependencies:
   lucide-react:
     specifier: ^0.288.0
     version: 0.288.0(react@18.2.0)
+  posthog-js:
+    specifier: ^1.84.1
+    version: 1.84.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -110,54 +110,6 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
     dev: true
-
-  /@analytics/cookie-utils@0.2.12:
-    resolution: {integrity: sha512-2h/yuIu3kmu+ZJlKmlT6GoRvUEY2k1BbQBezEv5kGhnn9KpmzPz715Y3GmM2i+m7Y0QmBdVUoA260dQZkofs2A==}
-    dependencies:
-      '@analytics/global-storage-utils': 0.1.7
-    dev: false
-
-  /@analytics/core@0.12.7(@types/dlv@1.1.3):
-    resolution: {integrity: sha512-etmIPCoxWLoUZ/o1o2zvIk4cdVHa8I1xUQtTuLA+YXQ4SsFbm75ZoMXJBqWrNSENpqCJgoL6hizl5uTbkNN+1Q==}
-    dependencies:
-      '@analytics/global-storage-utils': 0.1.7
-      '@analytics/type-utils': 0.6.2
-      analytics-utils: 1.0.12(@types/dlv@1.1.3)
-    transitivePeerDependencies:
-      - '@types/dlv'
-    dev: false
-
-  /@analytics/global-storage-utils@0.1.7:
-    resolution: {integrity: sha512-V+spzGLZYm4biZT4uefaylm80SrLXf8WOTv9hCgA46cLcyxx3LD4GCpssp1lj+RcWLl/uXJQBRO4Mnn/o1x6Gw==}
-    dependencies:
-      '@analytics/type-utils': 0.6.2
-    dev: false
-
-  /@analytics/localstorage-utils@0.1.10:
-    resolution: {integrity: sha512-uJS+Jp1yLG5VFCgA5T82ZODYBS0xuDQx0NtAZrgbqt9j51BX3TcgmOez5LVkrUNu/lpbxjCLq35I4TKj78VmOQ==}
-    dependencies:
-      '@analytics/global-storage-utils': 0.1.7
-    dev: false
-
-  /@analytics/session-storage-utils@0.0.7:
-    resolution: {integrity: sha512-PSv40UxG96HVcjY15e3zOqU2n8IqXnH8XvTkg1X43uXNTKVSebiI2kUjA3Q7ESFbw5DPwcLbJhV7GforpuBLDw==}
-    dependencies:
-      '@analytics/global-storage-utils': 0.1.7
-    dev: false
-
-  /@analytics/storage-utils@0.4.2:
-    resolution: {integrity: sha512-AXObwyVQw9h2uJh1t2hUgabtVxzYpW+7uKVbdHQK80vr3Td5rrmCxrCxarh7HUuAgSDZ0bZWqmYxVgmwKceaLg==}
-    dependencies:
-      '@analytics/cookie-utils': 0.2.12
-      '@analytics/global-storage-utils': 0.1.7
-      '@analytics/localstorage-utils': 0.1.10
-      '@analytics/session-storage-utils': 0.0.7
-      '@analytics/type-utils': 0.6.2
-    dev: false
-
-  /@analytics/type-utils@0.6.2:
-    resolution: {integrity: sha512-TD+xbmsBLyYy/IxFimW/YL/9L2IEnM7/EoV9Aeh56U64Ify8o27HJcKjo38XY9Tcn0uOq1AX3thkKgvtWvwFQg==}
-    dev: false
 
   /@babel/code-frame@7.22.13:
     resolution: {integrity: sha512-XktuhWlJ5g+3TJXc5upd9Ks1HutSArik6jf2eAjYFyIOf4ej3RN+184cZbzDvbPnuTJIUhPKKJE3cIsYTiAT3w==}
@@ -863,10 +815,6 @@ packages:
       '@babel/types': 7.23.0
     dev: true
 
-  /@types/dlv@1.1.3:
-    resolution: {integrity: sha512-u6JdAm9wje4n7vqkK9F6nQI18xSO+MVfXz6RMgN4acJmSZMlV7ZRrEQg4d1wmiQ2txg2xArpc68RS6p4JecVNg==}
-    dev: false
-
   /@types/estree@1.0.3:
     resolution: {integrity: sha512-CS2rOaoQ/eAgAfcTfq6amKG7bsN+EMcgGY4FAFQdvSj2y1ixvOZTUA9mOtCai7E1SYu283XNw7urKK30nP3wkQ==}
     dev: true
@@ -1084,25 +1032,6 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
-
-  /analytics-utils@1.0.12(@types/dlv@1.1.3):
-    resolution: {integrity: sha512-WvV2YWgsnXLxaY0QYux0crpBAg/0JA763NmbMVz22jKhMPo7dpTBet8G2IlF7ixTjLDzGlkHk1ZaKqqQmjJ+4w==}
-    peerDependencies:
-      '@types/dlv': ^1.0.0
-    dependencies:
-      '@analytics/type-utils': 0.6.2
-      '@types/dlv': 1.1.3
-      dlv: 1.1.3
-    dev: false
-
-  /analytics@0.8.9(@types/dlv@1.1.3):
-    resolution: {integrity: sha512-oTbUzQpncMTslakqfK70GgB6bopk5hY+uuekwnadMkDyqNLgcD02KRzteTnO7q5Ko6wDECVtT8xi/6OuAMZykA==}
-    dependencies:
-      '@analytics/core': 0.12.7(@types/dlv@1.1.3)
-      '@analytics/storage-utils': 0.4.2
-    transitivePeerDependencies:
-      - '@types/dlv'
-    dev: false
 
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1558,6 +1487,10 @@ packages:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
     dependencies:
       reusify: 1.0.4
+
+  /fflate@0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
 
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -2098,6 +2031,12 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /posthog-js@1.84.1:
+    resolution: {integrity: sha512-VWf6Hj9qBCyXBahIeUiOF/P8EuMfuD3db7QiS5hlytmJt0n5KwroIkN+oP6GrYBa3fzt9OWNLFVyRZ2wNE/vrg==}
+    dependencies:
+      fflate: 0.4.8
+    dev: false
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
