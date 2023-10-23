@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-import NotFound from "@/assets/undraw_no_data_re_kwbl.svg?react";
+import NotFound from "../../assets/undraw_no_data_re_kwbl.svg?react";
 
 export default function MouseNotFoundSection() {
   return (

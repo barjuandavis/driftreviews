@@ -1,4 +1,4 @@
-import { MousePost } from "@/api/prismic";
+import { MousePost } from "../../api/prismic";
 import PopupSection from "./PopupSection";
 import {
   generateBrandNamesFromMousePosts,
@@ -6,10 +6,10 @@ import {
   generatePriceRanges,
   generateRanks,
   generateValueRatings,
-} from "@/lib/generateValues";
+} from "../../lib/generateValues";
 
-import getCurrentFilterValue from "@/lib/getCurrentFilterValue";
-import useFilterStore from "@/lib/filterStore";
+import getCurrentFilterValue from "../../lib/getCurrentFilterValue";
+import useFilterStore from "../../lib/filterStore";
 
 export default function FilterSection(props: {
   opened: boolean;

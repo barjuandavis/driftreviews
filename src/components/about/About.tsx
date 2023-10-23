@@ -1,6 +1,6 @@
 // import { type Dispatch, type SetStateAction } from "react";
 
-import PopupSection from "@/components/sections/PopupSection";
+import PopupSection from "../../components/sections/PopupSection";
 
 export default function About(props: {
   opened: boolean;

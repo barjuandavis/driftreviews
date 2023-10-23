@@ -1,4 +1,4 @@
-import { MousePost } from "@/api/prismic";
+import { MousePost } from "../api/prismic";
 
 export function generateBrandNamesFromMousePosts(mousePosts: MousePost[]) {
   const brandNames: Set<string> = new Set();

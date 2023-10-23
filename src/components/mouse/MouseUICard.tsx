@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { type MousePost } from "@/api/prismic";
+import { type MousePost } from "../../api/prismic";
 
 import RankBadge from "./badges/RankBadge";
 import PriceRangeBadge, { PriceRanges } from "./badges/PriceRangeBadge";
 import MouseShapeBadge, { MouseShapes } from "./badges/MouseShapeBadge";
 import ValueRatingBadge, { ValueRatings } from "./badges/ValueRatingBadge";
-import TiktokSvg from "@/assets/tiktok.svg?react";
+import TiktokSvg from "../../assets/tiktok.svg?react";
 
 import "./mousecardstyles.css";
 

@@ -11,8 +11,8 @@ import FilterSection from "./sections/FilterSection";
 import FilterEmptySvg from "../assets/filter-kosong.svg?react";
 import FilterFilledSvg from "../assets/filter-isi.svg?react";
 
-import useFilterStore, { checkIfFiltersAreEmpty } from "@/lib/filterStore";
-import { convertRankIntoNumber } from "@/lib/generateValues";
+import useFilterStore, { checkIfFiltersAreEmpty } from "../lib/filterStore";
+import { convertRankIntoNumber } from "../lib/generateValues";
 
 export default function NewMouseList() {
   const [searchTerm, setSearchTerm] = useState("");

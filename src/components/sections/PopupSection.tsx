@@ -1,7 +1,7 @@
 // import { type Dispatch, type SetStateAction } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./popupsectionstyles.css";
-import CloseSvg from "@/assets/close.svg?react";
+import CloseSvg from "../../assets/close.svg?react";
 export default function PopupSection(props: {
   opened: boolean;
   setOpened: (opened: boolean) => void;
