@@ -20,7 +20,6 @@
 .card__content {
   padding: 1rem;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,4 +47,16 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 280px;
+  }
+  .card-image-container {
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 }

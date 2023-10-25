@@ -51,6 +51,12 @@ export type MouseBrand = {
   isBroken: boolean;
 };
 
+export type AffiliateLink = {
+  link_type: string;
+  url: string;
+  target: string;
+};
+
 export type Mouse = {
   rank: string;
   brand: MouseBrand;
@@ -63,11 +69,8 @@ export type Mouse = {
   short_description: string;
   long_description: string[];
   review_content_embed: ReviewContentEmbed;
-  affiliate_link: {
-    link_type: string;
-    url: string;
-    target: string;
-  };
+  affiliate_link: AffiliateLink;
+  affiliate_link_tokopedia: AffiliateLink;
   body: string[];
 };
 

@@ -3,23 +3,22 @@ import { useEffect, useState } from "react";
 import MouseUICard from "../components/mouse/MouseUICard";
 
 import { MousePost, getAllMouse } from "../api/prismic";
-import { Input } from "./ui/input";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import MouseNotFoundSection from "./mouse/MouseNotFoundSection";
 
 import FilterSection from "./sections/FilterSection";
-import FilterEmptySvg from "../assets/filter-kosong.svg?react";
-import FilterFilledSvg from "../assets/filter-isi.svg?react";
 
-import useFilterStore, { checkIfFiltersAreEmpty } from "../lib/filterStore";
+import useFilterStore from "../lib/filterStore";
 import { convertRankIntoNumber } from "../lib/generateValues";
+import FilterInputsSection from "./sections/FilterInputsSection";
 
 export default function NewMouseList() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [mouseData, setMouseData] = useState<MousePost[]>([] as MousePost[]);
   const [filterButtonOpened, setFilterButtonOpened] = useState(false);
+  const [filterInputsSectionsOpened, setFilterInputsSectionsOpened] =
+    useState(false);
   const filters = useFilterStore((state) => state.filters);
-  const resetFilters = useFilterStore((state) => state.resetFilterValues);
+  const searchTerm = useFilterStore((state) => state.searchTerm);
 
   useEffect(() => {
     const fetchMouseData = async () => {
@@ -29,12 +28,16 @@ export default function NewMouseList() {
     fetchMouseData();
   }, []);
 
+  useEffect(() => {
+    console.log("filterInputsSectionsOpened", filterInputsSectionsOpened);
+  }, [filterInputsSectionsOpened]);
+
   const filteredMouse = mouseData
     .filter((mouse) => {
       const checks = [
         mouse.data.mouse_name_short
           .toLowerCase()
-          .includes(searchTerm.toLowerCase()),
+          .includes(searchTerm?.toLowerCase?.() ?? ""),
         filters.brands.includes(mouse.data.brand.tags[0]) ||
           filters.brands.length === 0,
         filters.priceRange.includes(mouse.data.price_range) ||
@@ -57,43 +60,50 @@ export default function NewMouseList() {
       (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating)
     );
 
-  const filterIsEmpty = checkIfFiltersAreEmpty();
-
   return (
     <div className="flex flex-col gap-4 w-full">
-      {!filterIsEmpty && (
-        <div className="flex justify-end w-full">
-          <p
-            className="underline cursor-pointer text-slate-400"
-            onClick={resetFilters}
-          >
-            Reset semua filter
-          </p>
-        </div>
-      )}
-      <Input
-        type="text"
-        placeholder="Search"
-        onChange={(event) => {
-          setSearchTerm(event.target.value);
+      <motion.div
+        // animate when the previous input button has been scrolled away\
+        onViewportLeave={() => {
+          setFilterInputsSectionsOpened(true);
         }}
-      />
-      <div>
-        <button
-          type="button"
-          onClick={() => {
-            setFilterButtonOpened(!filterButtonOpened);
-          }}
-          className={!filterIsEmpty ? "button-toggle" : "link-button"}
-        >
-          Filter{" "}
-          {filterIsEmpty ? (
-            <FilterEmptySvg className="w-5 h-5 ml-2 align-text-top inline-block" />
-          ) : (
-            <FilterFilledSvg className="w-5 h-5 ml-2 align-text-top inline-block" />
-          )}
-        </button>
-      </div>
+        onViewportEnter={() => {
+          setFilterInputsSectionsOpened(false);
+        }}
+        className="flex flex-wrap gap-4 w-full justify-center"
+      >
+        <FilterInputsSection
+          isAbsolute={false}
+          setFilterButtonOpened={setFilterButtonOpened}
+        />
+      </motion.div>
+      <AnimatePresence>
+        {filterInputsSectionsOpened && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              position: "fixed",
+              display: "flex",
+              justifyContent: "center",
+              width: "100vw",
+              height: "12vh",
+              zIndex: 100,
+              top: 0,
+              left: 0,
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(255,255,255,0) 100%)",
+            }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <FilterInputsSection
+              isAbsolute={true}
+              setFilterButtonOpened={setFilterButtonOpened}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <FilterSection
         opened={filterButtonOpened}
         setOpen={setFilterButtonOpened}

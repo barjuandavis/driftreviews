@@ -6,6 +6,8 @@ import PriceRangeBadge, { PriceRanges } from "./badges/PriceRangeBadge";
 import MouseShapeBadge, { MouseShapes } from "./badges/MouseShapeBadge";
 import ValueRatingBadge, { ValueRatings } from "./badges/ValueRatingBadge";
 import TiktokSvg from "../../assets/tiktok.svg?react";
+import ShopeeSvg from "../../assets/shopee.svg?react";
+import TokopediaPng from "../../assets/tokopedia.png";
 
 import posthog from "posthog-js";
 
@@ -61,23 +63,47 @@ export default function MouseUICard(props: MouseUICardProps) {
             onClick={() => {
               posthog.capture("Affiliate Link Clicked", {
                 mouse_name: data?.mouse_name_short,
+                affiliate_link: data?.affiliate_link_tokopedia?.url,
+                platform: "tokopedia",
+              });
+            }}
+            href={data?.affiliate_link_tokopedia?.url}
+            className={
+              data?.affiliate_link_tokopedia?.url === undefined
+                ? "link-button disabled-link-button"
+                : "link-button tokopedia"
+            }
+          >
+            <img
+              className="fill-current w-6 h-6"
+              style={{
+                filter:
+                  data?.affiliate_link?.url === undefined
+                    ? "grayscale(100%)"
+                    : "none",
+              }}
+              src={TokopediaPng}
+              alt="tokopedia"
+            />
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              posthog.capture("Affiliate Link Clicked", {
+                mouse_name: data?.mouse_name_short,
                 affiliate_link: data?.affiliate_link?.url,
+                platform: "shopee",
               });
             }}
             href={data?.affiliate_link?.url}
             className={
               data?.affiliate_link?.url === undefined
                 ? "link-button disabled-link-button"
-                : data?.affiliate_link.url.includes("shope.ee")
-                ? "link-button shopee"
-                : "link-button tokopedia"
+                : "link-button shopee"
             }
           >
-            <b>
-              {data?.affiliate_link?.url === undefined
-                ? "Barangnya abis 🥲"
-                : "GAS CHECKOUT 🔥"}
-            </b>
+            <ShopeeSvg className="fill-current w-6 h-6" />
           </a>
 
           <a
@@ -92,10 +118,7 @@ export default function MouseUICard(props: MouseUICardProps) {
             rel="noopener noreferrer"
             className="link-button tiktok"
           >
-            <TiktokSvg
-              aria-description="Tiktok logo"
-              className="fill-current w-6 h-6"
-            />
+            <TiktokSvg className="fill-current w-6 h-6" />
           </a>
         </div>
       </div>
