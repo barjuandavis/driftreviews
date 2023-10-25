@@ -59,7 +59,15 @@ const useFilterStore = create<FiltersState>()((set) => ({
   },
 }));
 
-export default useFilterStore;
+const useFilterCacheStore = create<{
+  query: string;
+  setQuery(query: string): void;
+}>((set) => ({
+  query: "",
+  setQuery(query: string) {
+    set({ query });
+  },
+}));
 
 export function checkIfFiltersAreEmpty(type: "all" | "onlyFilters" = "all") {
   const store = useFilterStore.getState();
@@ -69,3 +77,5 @@ export function checkIfFiltersAreEmpty(type: "all" | "onlyFilters" = "all") {
     (type === "onlyFilters" ? true : store.searchTerm === "")
   );
 }
+export default useFilterStore;
+export { useFilterCacheStore };

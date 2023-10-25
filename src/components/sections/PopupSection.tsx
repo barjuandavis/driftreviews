@@ -18,7 +18,7 @@ export default function PopupSection(props: {
           transition={{ duration: 0.3, ease: "anticipate" }}
           className="pop-up-section"
         >
-          <div className="pop-up-section__content overflow-scroll">
+          <div className="pop-up-section__content">
             <div className="pop-up-section__close-button-container">
               <button
                 type="button"

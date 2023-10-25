@@ -83,13 +83,15 @@ export default function NewMouseList() {
             initial={{
               opacity: 0,
               position: "fixed",
+              display: "flex",
+              justifyContent: "center",
               width: "100vw",
               height: "12vh",
               zIndex: 100,
               top: 0,
               left: 0,
               background:
-                "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)",
+                "linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(255,255,255,0) 100%)",
             }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
