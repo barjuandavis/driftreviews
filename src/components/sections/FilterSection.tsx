@@ -29,22 +29,24 @@ export default function FilterSection(props: {
         <h3 className="mb-4">Mau cari mouse apa? Silakan filter disini.</h3>
         <p>Berdasarkan Brand</p>
         <div className="flex flex-wrap gap-2">
-          {brands.map((brand) => (
-            <button
-              type="button"
-              key={brand}
-              className={`${
-                getCurrentFilterValue(brand, "brands")
-                  ? "button-toggle"
-                  : "link-button"
-              }`}
-              onClick={() => {
-                toggleFilterValue("brands", brand);
-              }}
-            >
-              {brand}
-            </button>
-          ))}
+          {brands
+            .sort((a, b) => a.localeCompare(b))
+            .map((brand) => (
+              <button
+                type="button"
+                key={brand}
+                className={`${
+                  getCurrentFilterValue(brand, "brands")
+                    ? "button-toggle"
+                    : "link-button"
+                }`}
+                onClick={() => {
+                  toggleFilterValue("brands", brand);
+                }}
+              >
+                {brand}
+              </button>
+            ))}
         </div>
         <p>Berdasarkan Value Rating</p>
         <div className="flex flex-wrap gap-2">
