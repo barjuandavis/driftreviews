@@ -38,20 +38,20 @@ export default function FilterButtonsSection(props: {
           : "flex flex-wrap gap-4 justify-center p-4 w-full"
       }
     >
-      {!filterIsEmptyAndSearchTermIsEmpty && (
-        <div className="flex justify-end w-full">
-          <p
-            className="underline cursor-pointer text-slate-400"
-            onClick={() => {
-              setSearchTermCache("");
-              resetFilters();
-            }}
-          >
-            Reset semua filter
-          </p>
-        </div>
-      )}
-      <div className="flex flex-col w-full justify-center items-center gap-4">
+      <div className="flex flex-col w-full justify-center items-center gap-4 max-w-3xl">
+        {!filterIsEmptyAndSearchTermIsEmpty && (
+          <div className="flex justify-end w-full">
+            <p
+              className="underline cursor-pointer text-slate-400"
+              onClick={() => {
+                setSearchTermCache("");
+                resetFilters();
+              }}
+            >
+              Reset semua filter
+            </p>
+          </div>
+        )}
         <div className="flex w-full gap-4 max-w-3xl">
           <Input
             type="text"
