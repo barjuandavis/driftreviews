@@ -30,6 +30,12 @@ export default function VariousLinksSection(props: { opened: boolean }) {
           content="USB Extension"
           type="tokopedia"
         />
+        https://tokopedia.link/IrUV7MmXDEb
+        <LinkButton
+          href="https://tokopedia.link/IrUV7MmXDEb"
+          content="Grip Tape Universal"
+          type="tokopedia"
+        />
       </div>
     </SlideoutSection>
   );
