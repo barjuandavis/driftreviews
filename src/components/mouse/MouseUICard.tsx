@@ -19,8 +19,6 @@ type MouseUICardProps = {
 export default function MouseUICard(props: MouseUICardProps) {
   const data = props.mousePost.data;
 
-  //console.log(data);
-
   return (
     <motion.div
       //animation stuff
@@ -78,7 +76,7 @@ export default function MouseUICard(props: MouseUICardProps) {
               className="fill-current w-6 h-6"
               style={{
                 filter:
-                  data?.affiliate_link?.url === undefined
+                  data?.affiliate_link_tokopedia?.url === undefined
                     ? "grayscale(100%)"
                     : "none",
               }}
