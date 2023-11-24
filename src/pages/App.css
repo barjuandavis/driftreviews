@@ -64,9 +64,19 @@ h1 {
   color: black;
 }
 
+.misc-inverted {
+  background: black !important;
+  color: white;
+}
+
+.confirmed {
+  background: rgb(0, 255, 0) !important;
+  color: black;
+}
+
 .tokopedia {
   background: rgb(104, 247, 123) !important;
-  color: white;
+  color: black;
 }
 
 .shopee {
