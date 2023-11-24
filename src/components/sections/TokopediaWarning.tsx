@@ -23,11 +23,11 @@ export default function TokopediaWarning(props: {
           </p>
           <div className="grid gap-6">
             <div className="bg-green-100 p-6 flex gap-4 flex-col justify-center items-center rounded-xl">
-              <img src="/public/keranjang.jpg" alt="keranjang" />
+              <img src="/keranjang.jpg" alt="keranjang" />
               <p className="text-center text-green-600 text-xl">BENAR ✅</p>
             </div>
             <div className="bg-red-100 p-6 flex gap-4 flex-col justify-center items-center rounded-xl">
-              <img src="/public/wishlist.jpg" alt="wishlist" />
+              <img src="/wishlist.jpg" alt="wishlist" />
               <p className="text-center text-red-600 text-xl">SALAH ❌</p>
             </div>
             <LinkButton
