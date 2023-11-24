@@ -35,6 +35,11 @@ export default function VariousLinksSection(props: { opened: boolean }) {
           content="Grip Tape Universal"
           type="tokopedia"
         />
+        <LinkButton
+          href="https://tokopedia.link/IrUV7MmXDEb"
+          content="Mouse Feet Dot Skates Tiger Arc"
+          type="tokopedia"
+        />
       </div>
     </SlideoutSection>
   );

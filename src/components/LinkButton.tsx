@@ -1,7 +1,14 @@
 type LinkButtonProps = {
   href: string;
   content: string;
-  type: "discord" | "instagram" | "tiktok" | "tokopedia" | "misc";
+  type:
+    | "discord"
+    | "instagram"
+    | "tiktok"
+    | "tokopedia"
+    | "misc"
+    | "misc-inverted"
+    | "confirmed";
 };
 
 export default function LinkButton({

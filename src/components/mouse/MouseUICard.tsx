@@ -12,13 +12,16 @@ import TokopediaPng from "../../assets/tokopedia.png";
 import posthog from "posthog-js";
 
 import "./mousecardstyles.css";
+import TokopediaWarning from "../sections/TokopediaWarning";
+import React from "react";
 
 type MouseUICardProps = {
   mousePost: MousePost;
 };
 export default function MouseUICard(props: MouseUICardProps) {
   const data = props.mousePost.data;
-
+  const [tokopediaWarningOpened, setTokopediaWarningOpened] =
+    React.useState(false);
   return (
     <motion.div
       //animation stuff
@@ -29,6 +32,11 @@ export default function MouseUICard(props: MouseUICardProps) {
       rel="noopener noreferrer"
       className="card"
     >
+      <TokopediaWarning
+        opened={tokopediaWarningOpened}
+        setOpened={setTokopediaWarningOpened}
+        linkTokopedia={data?.affiliate_link_tokopedia?.url}
+      />
       <div className="card-image-container">
         <RankBadge rank={data.rank} />
         <img
@@ -55,17 +63,17 @@ export default function MouseUICard(props: MouseUICardProps) {
         <div className="card__rating"></div>
         <p className="card__text">{data?.review_content_embed?.title}</p>
         <div className="flex w-full justify-center items-center gap-4">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             onClick={() => {
               posthog.capture("Affiliate Link Clicked", {
                 mouse_name: data?.mouse_name_short,
                 affiliate_link: data?.affiliate_link_tokopedia?.url,
                 platform: "tokopedia",
               });
+              if (data?.affiliate_link_tokopedia?.url !== undefined) {
+                setTokopediaWarningOpened(true);
+              }
             }}
-            href={data?.affiliate_link_tokopedia?.url}
             className={
               data?.affiliate_link_tokopedia?.url === undefined
                 ? "link-button disabled-link-button"
@@ -83,7 +91,7 @@ export default function MouseUICard(props: MouseUICardProps) {
               src={TokopediaPng}
               alt="tokopedia"
             />
-          </a>
+          </button>
           <a
             target="_blank"
             rel="noopener noreferrer"
