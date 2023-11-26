@@ -36,7 +36,7 @@ export default function VariousLinksSection(props: { opened: boolean }) {
           type="tokopedia"
         />
         <LinkButton
-          href="https://tokopedia.link/IrUV7MmXDEb"
+          href="https://tokopedia.link/YRWxqE9t2Eb"
           content="Mouse Feet Dot Skates Tiger Arc"
           type="tokopedia"
         />
