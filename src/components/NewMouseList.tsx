@@ -11,6 +11,7 @@ import FilterSection from "./sections/FilterSection";
 import useFilterStore from "../lib/filterStore";
 import { convertRankIntoNumber } from "../lib/generateValues";
 import FilterInputsSection from "./sections/FilterInputsSection";
+import LoadingScreen from "./sections/LoadingScreen";
 
 export default function NewMouseList() {
   const [mouseData, setMouseData] = useState<MousePost[]>([] as MousePost[]);
@@ -19,18 +20,17 @@ export default function NewMouseList() {
     useState(false);
   const filters = useFilterStore((state) => state.filters);
   const searchTerm = useFilterStore((state) => state.searchTerm);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMouseData = async () => {
+      setLoading(true);
       const mouseData = await getAllMouse();
       setMouseData(mouseData);
+      setLoading(false);
     };
     fetchMouseData();
   }, []);
-
-  useEffect(() => {
-    console.log("filterInputsSectionsOpened", filterInputsSectionsOpened);
-  }, [filterInputsSectionsOpened]);
 
   const filteredMouse = mouseData
     .filter((mouse) => {
@@ -112,7 +112,8 @@ export default function NewMouseList() {
 
       <div className="flex flex-wrap justify-center max-w-800 my-4 mx-auto w-full gap-4">
         <AnimatePresence>
-          {filteredMouse.length > 0 ? (
+          {loading && <LoadingScreen key="just-a-loading-screen" />}
+          {filteredMouse.length > 0 && !loading ? (
             filteredMouse.map((mouse) => (
               <MouseUICard key={mouse.id} mousePost={mouse} />
             ))

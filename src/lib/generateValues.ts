@@ -28,7 +28,7 @@ export function generatePriceRanges() {
 }
 
 export function generateRanks() {
-  return ["S Rank", "A Rank", "B Rank", "C Rank", "F Rank"];
+  return ["S", "A+", "A", "B+", "B", "C+", "C", "F"];
 }
 
 export function convertRankIntoNumber(rank: string) {

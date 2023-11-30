@@ -33,8 +33,64 @@ export default function About(props: {
         sensor, performa, kelengkapan, dan lain-lain.
         <br />
         <br />
-        Rank yang ada adalah: <b>S, A, B, C, dan F.</b> Rank S adalah rank
-        tertinggi, dan rank F adalah rank terendah.
+        Rank yang ada adalah: <b>S, A+, A, B+, B, C+, C, dan F.</b> Rank S
+        adalah rank tertinggi, dan rank F adalah rank terendah.
+        <br />
+        <br />
+        Pertimbangan rank ini adalah sebagai berikut:
+        <ul className="list-inside" style={{ listStyleType: "initial" }}>
+          <li>
+            <b>S</b>: Mouse ini memiliki package yang luar biasa baik, baik dari
+            segi <i>build quality</i> maupun performa. Biasanya memiliki polling
+            rate diatas 4000Hz dan berat yang sangat ringan, tanpa mengorbankan
+            build quality.
+          </li>
+          <li>
+            <b>A+</b>: Mouse ini memiliki package yang sangat baik, baik dari
+            segi <i>build quality</i> maupun performa. Biasanya memiliki polling
+            rate hingga 4000Hz atau lebih dan berat yang ringan, dengan
+            mengorbankan sedikit build quality. Mouse yang ada di rank ini harus
+            memenuhi syarat rank A dan harus wireless.
+          </li>
+          <li>
+            <b>A</b>: Mouse ini memiliki package yang baik, baik dari segi{" "}
+            <i>build quality</i> maupun performa. Biasanya memiliki polling rate
+            hingga 4000Hz dan berat yang ringan. Biasanya hanya memiliki fitur
+            "esensial".
+          </li>
+          <li>
+            <b>B+</b>: Mouse ini memiliki package yang cukup baik, terutama dari
+            segi performa. Biasanya memiliki polling rate diatas 1000Hz dan
+            berat yang ringan, tanpa terlalu banyak mengorbankan{" "}
+            <i> build quality</i>.
+          </li>
+          <li>
+            <b>B</b>: Mouse ini memiliki package yang cukup, terutama dari segi
+            performa. Biasanya memiliki polling rate hingga 1000Hz dan berat
+            yang ringan, namun dapat mengorbankan <i> build quality juga</i>.
+            Standar dari rank B adalah mouse dengan sensor Pixart 3370 atau 3395
+            1000 Hz.
+          </li>
+          <li>
+            <b>C+</b>: Mouse ini memiliki package yang cukup, terutama dari segi
+            performa. Biasanya memiliki polling rate hingga 1000Hz dan berat
+            yang ringan, namun dapat mengorbankan <i> build quality juga</i>.
+            Sensor yang digunakan di bawah rank B.
+          </li>
+          <li>
+            <b>C</b>: Mouse ini memiliki package yang cukup, terutama dari segi
+            performa. Biasanya memiliki polling rate hingga 1000Hz namun dapat
+            mengorbankan <i> build quality</i> dan berat mouse. Biasanya berupa
+            mouse kabel.
+          </li>
+          <li>
+            <b>F</b>: Mouse ini memiliki package yang buruk, baik dari segi
+            <i>build quality</i> maupun performa. Biasanya memiliki polling rate
+            dibawah 1000Hz, tidak memerhatikan berat, dan mengorbankan build
+            quality. Mouse rank F tidak akan ditampilkan di website ini dan
+            tidak direkomendasikan untuk dibeli.
+          </li>
+        </ul>
         <br />
         <br />
         <span className="text-xl">
