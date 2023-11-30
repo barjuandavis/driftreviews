@@ -21,10 +21,21 @@
   background: #ffc1c1;
 }
 
+.badge--a-plus {
+  color: #969901;
+  background: #ffffc1;
+}
+
 .badge--a {
   /*shade of green */
   color: #019901;
   background: #c1ffc1;
+}
+
+.badge--b-plus {
+  /*shade of yellow */
+  color: #018f99;
+  background: #c1ffff;
 }
 
 .badge--b {
@@ -33,9 +44,15 @@
   background: #c1c1ff;
 }
 
+.badge--c-plus {
+  /*shade of orange */
+  color: #540099;
+  background: #ffc1ff;
+}
+
 .badge--c {
   /*shade of purple */
-  color: #7f007f;
+  color: #7f0031;
   background: #ffc1ff;
 }
 

@@ -6,27 +6,47 @@ type BadgeProps = {
 const getBadgeClassName = (rank: string) => {
   const ranks = [
     {
-      name: "S Rank",
+      name: "S",
       letter: "S",
+      hasPlus: false,
       className: "badge--s",
     },
     {
-      name: "A Rank",
+      name: "A+",
+      letter: "A+",
+      hasPlus: true,
+      className: "badge--a-plus",
+    },
+    {
+      name: "A",
       letter: "A",
+      hasPlus: false,
       className: "badge--a",
     },
     {
-      name: "B Rank",
+      name: "B+",
+      letter: "B+",
+      hasPlus: true,
+      className: "badge--b-plus",
+    },
+    {
+      name: "B",
       letter: "B",
       className: "badge--b",
     },
     {
-      name: "C Rank",
+      name: "C+",
+      letter: "C+",
+      hasPlus: true,
+      className: "badge--c-plus",
+    },
+    {
+      name: "C",
       letter: "C",
       className: "badge--c",
     },
     {
-      name: "F Rank",
+      name: "F",
       letter: "F",
       className: "badge--f",
     },
