@@ -74,8 +74,8 @@ export type Mouse = {
   body: string[];
 };
 
-export const getAllMouse = async () => {
-  const prismicDoc = await client.getAllByType("mouse");
+export const getAllItemByType = async (type: string) => {
+  const prismicDoc = await client.getAllByType(type);
   const doc = prismicDoc.map((doc) => {
     return {
       id: doc.id,
@@ -85,5 +85,15 @@ export const getAllMouse = async () => {
       data: doc.data,
     };
   });
-  return doc as MousePost[];
+  return doc;
+};
+
+export const getAllMouse = async () => {
+  const prismicDoc = (await getAllItemByType("mouse")) as MousePost[];
+  return prismicDoc;
+};
+
+export const getAllMousepad = async () => {
+  const prismicDoc = (await getAllItemByType("mousepad")) as MousePost[];
+  return prismicDoc;
 };

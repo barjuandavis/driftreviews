@@ -61,7 +61,9 @@ export default function MouseUICard(props: MouseUICardProps) {
         </div>
         <p className="card__title">{data?.mouse_name_short}</p>
         <div className="card__rating"></div>
-        <p className="card__text">{data?.review_content_embed?.title}</p>
+        <p className="card__text">
+          {data?.review_content_embed?.title ?? data?.short_description}
+        </p>
         <div className="flex w-full justify-center items-center gap-4">
           <button
             onClick={() => {
@@ -122,7 +124,11 @@ export default function MouseUICard(props: MouseUICardProps) {
             }}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-button tiktok"
+            className={
+              data?.review_content_embed?.embed_url === undefined
+                ? "link-button disabled-link-button"
+                : "link-button tiktok"
+            }
           >
             <TiktokSvg className="fill-current w-6 h-6" />
           </a>
