@@ -35,3 +35,7 @@ export function convertRankIntoNumber(rank: string) {
   //use index + 1
   return generateRanks().indexOf(rank) + 1;
 }
+
+export function generateSizes() {
+  return ["S", "S-M", "M-L", "L"];
+}

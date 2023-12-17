@@ -5,6 +5,7 @@ import {
   generateMouseShapes,
   generatePriceRanges,
   generateRanks,
+  generateSizes,
   generateValueRatings,
 } from "../../lib/generateValues";
 
@@ -21,6 +22,7 @@ export default function FilterSection(props: {
   const priceRanges = generatePriceRanges();
   const mouseShapes = generateMouseShapes();
   const ranks = generateRanks();
+  const sizes = generateSizes();
   const toggleFilterValue = useFilterStore((state) => state.toggleFilterValue);
 
   return (
@@ -121,6 +123,24 @@ export default function FilterSection(props: {
               }}
             >
               {rank}
+            </button>
+          ))}
+        </div>
+        <p>Berdasarkan Ukuran</p>
+        <div className="flex flex-wrap gap-2">
+          {sizes.map((size) => (
+            <button
+              type="button"
+              className={`${
+                getCurrentFilterValue(size, "sizes")
+                  ? "button-toggle"
+                  : "link-button"
+              }`}
+              onClick={() => {
+                toggleFilterValue("sizes", size);
+              }}
+            >
+              {size}
             </button>
           ))}
         </div>

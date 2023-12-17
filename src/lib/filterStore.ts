@@ -1,31 +1,36 @@
 import { create } from "zustand";
 
-export type Filters = {
+export type MouseFilters = {
   brands: string[];
   valueRating: string[];
   priceRange: string[];
   shapes: string[];
   ranks: string[];
+  sizes: string[];
 };
 
-export type FilterTypes = keyof Filters;
-export interface FiltersState {
+export type FilterTypes = keyof MouseFilters;
+
+export interface MouseFiltersState {
   searchTerm?: string;
-  filters: Filters;
+  filters: MouseFilters;
   toggleFilterValue(filterType: FilterTypes, value: string): void;
   resetFilterValues(): void;
   setSearchTerm(searchTerm: string): void;
 }
 
-const useFilterStore = create<FiltersState>()((set) => ({
+const mouseFilterInitialState: MouseFilters = {
+  brands: [],
+  valueRating: [],
+  priceRange: [],
+  shapes: [],
+  ranks: [],
+  sizes: [],
+};
+
+const useFilterStore = create<MouseFiltersState>()((set) => ({
   searchTerm: "",
-  filters: {
-    brands: [],
-    valueRating: [],
-    priceRange: [],
-    shapes: [],
-    ranks: [],
-  },
+  filters: { ...mouseFilterInitialState },
   toggleFilterValue(filterType: FilterTypes, value: string) {
     set((state) => {
       const filterValues = state.filters[filterType];
@@ -45,13 +50,7 @@ const useFilterStore = create<FiltersState>()((set) => ({
   resetFilterValues() {
     set({
       searchTerm: "",
-      filters: {
-        brands: [],
-        valueRating: [],
-        priceRange: [],
-        shapes: [],
-        ranks: [],
-      },
+      filters: { ...mouseFilterInitialState },
     });
   },
   setSearchTerm(searchTerm: string) {

@@ -54,8 +54,9 @@ function App() {
             style it using Tailwind
             */}
             <Tabs defaultValue="account" className="w-full">
-              <TabsList>
+              <TabsList className="py-2 bg-slate-300">
                 <TabsTrigger
+                  className="px-8"
                   value="mouse"
                   onClick={() => {
                     setContentType("mouse");
@@ -65,6 +66,7 @@ function App() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="mousepad"
+                  className="px-8"
                   onClick={() => {
                     setContentType("mousepad");
                   }}

@@ -9,7 +9,15 @@ export type MousePost = {
   first_publication_date: string;
   last_publication_date: string;
   lang: string;
-  data: Mouse | Mousepad;
+  data: Mouse;
+};
+
+export type MousepadPost = {
+  id: string;
+  first_publication_date: string;
+  last_publication_date: string;
+  lang: string;
+  data: Mousepad;
 };
 
 export type MouseImage = {
@@ -58,6 +66,7 @@ export type AffiliateLink = {
 };
 
 export type Mouse = {
+  size: string;
   rank: string;
   brand: MouseBrand;
   mouse_name_short: string;
@@ -102,17 +111,17 @@ export const getAllItemByType = async (type: string) => {
       last_publication_date: doc.last_publication_date,
       lang: doc.lang,
       data: doc.data,
-    } as MousePost;
+    };
   });
   return doc;
 };
 
 export const getAllMouse = async () => {
-  const prismicDoc = await getAllItemByType("mouse");
+  const prismicDoc = (await getAllItemByType("mouse")) as MousePost[];
   return prismicDoc;
 };
 
 export const getAllMousepad = async () => {
-  const prismicDoc = await getAllItemByType("mousepad");
+  const prismicDoc = (await getAllItemByType("mousepad")) as MousepadPost[];
   return prismicDoc;
 };

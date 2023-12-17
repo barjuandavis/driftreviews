@@ -5,6 +5,7 @@ import RankBadge from "./badges/RankBadge";
 import PriceRangeBadge, { PriceRanges } from "./badges/PriceRangeBadge";
 import MouseShapeBadge, { MouseShapes } from "./badges/MouseShapeBadge";
 import ValueRatingBadge, { ValueRatings } from "./badges/ValueRatingBadge";
+import SizeBadge, { MouseSizes } from "./badges/SizeBadge";
 import TiktokSvg from "../../assets/tiktok.svg?react";
 import ShopeeSvg from "../../assets/shopee.svg?react";
 import TokopediaPng from "../../assets/tokopedia.png";
@@ -47,10 +48,11 @@ export default function MouseUICard(props: MouseUICardProps) {
       </div>
       <div className="card__content">
         <div className="flex w-full flex-col h-fit items-start justify-start gap-2 mb-2">
-          <div className="w-fit">
+          <div className="flex w-full gap-1 h-fit items-start justify-start">
             <ValueRatingBadge
               valueRating={data?.value_rating as ValueRatings}
             />
+            <SizeBadge size={data?.size as unknown as MouseSizes} />
           </div>
           <div className="flex w-full gap-1 h-fit items-start justify-start">
             <MouseShapeBadge
