@@ -1,8 +1,8 @@
 // import { type Dispatch, type SetStateAction } from "react";
 
-import PopupSection from "../../components/sections/PopupSection";
+import PopupSection from "../sections/PopupSection";
 
-export default function About(props: {
+export default function MouseAbout(props: {
   opened: boolean;
   setOpen: (opened: boolean) => void;
 }) {
