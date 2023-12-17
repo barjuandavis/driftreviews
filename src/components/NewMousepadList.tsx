@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import MouseUICard from "../components/mouse/MouseUICard";
+import MouseUICard from "./mouse/MouseUICard";
 
 import { MousePost, getAllMouse } from "../api/prismic";
 import { AnimatePresence, motion } from "framer-motion";

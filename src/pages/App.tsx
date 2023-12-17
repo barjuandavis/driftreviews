@@ -7,7 +7,7 @@ import posthog from "posthog-js";
 import SlideoutButton from "@/components/sections/SlideoutButton";
 import VariousLinksSection from "@/components/sections/VariousLinksSection";
 import MousepadAbout from "@/components/about/MousepadAbout";
-import { motion } from "framer-motion";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function App() {
