@@ -9,7 +9,7 @@ export type MousePost = {
   first_publication_date: string;
   last_publication_date: string;
   lang: string;
-  data: Mouse;
+  data: Mouse | Mousepad;
 };
 
 export type MouseImage = {
@@ -74,6 +74,25 @@ export type Mouse = {
   body: string[];
 };
 
+export type Mousepad = {
+  rank: string;
+  brand: MouseBrand;
+  mousepad_name: string;
+  price_range: string;
+  value_rating: string;
+  static_friction: string;
+  dynamic_friction: string;
+  stickiness: string;
+  height: number;
+  width: number;
+  thickness: number;
+  mousepad_image: MouseImage;
+  short_description: string;
+  review_content_embed: ReviewContentEmbed;
+  affiliate_link: AffiliateLink;
+  affiliate_link_tokopedia: AffiliateLink;
+};
+
 export const getAllItemByType = async (type: string) => {
   const prismicDoc = await client.getAllByType(type);
   const doc = prismicDoc.map((doc) => {
@@ -83,17 +102,17 @@ export const getAllItemByType = async (type: string) => {
       last_publication_date: doc.last_publication_date,
       lang: doc.lang,
       data: doc.data,
-    };
+    } as MousePost;
   });
   return doc;
 };
 
 export const getAllMouse = async () => {
-  const prismicDoc = (await getAllItemByType("mouse")) as MousePost[];
+  const prismicDoc = await getAllItemByType("mouse");
   return prismicDoc;
 };
 
 export const getAllMousepad = async () => {
-  const prismicDoc = (await getAllItemByType("mousepad")) as MousePost[];
+  const prismicDoc = await getAllItemByType("mousepad");
   return prismicDoc;
 };
