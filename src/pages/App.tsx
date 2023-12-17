@@ -9,6 +9,7 @@ import VariousLinksSection from "@/components/sections/VariousLinksSection";
 import MousepadAbout from "@/components/about/MousepadAbout";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import NewMousepadList from "@/components/NewMousepadList";
 
 function App() {
   useEffect(() => {
@@ -77,7 +78,9 @@ function App() {
               <TabsContent value="mouse">
                 <NewMouseList />
               </TabsContent>
-              <TabsContent value="mousepad">Konten mousepad disini</TabsContent>
+              <TabsContent value="mousepad">
+                <NewMousepadList />
+              </TabsContent>
             </Tabs>
           </div>
           <VariousLinksSection opened={variousLinksOpened} />
