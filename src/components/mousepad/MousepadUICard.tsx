@@ -23,7 +23,7 @@ type MouseUICardProps = {
 };
 export default function MousepadUICard(props: MouseUICardProps) {
   const data = props.mousepadPost.data;
-  console.log(data);
+
   const [tokopediaWarningOpened, setTokopediaWarningOpened] =
     React.useState(false);
   return (
@@ -89,6 +89,13 @@ export default function MousepadUICard(props: MouseUICardProps) {
           </p>
           <p className="card__text-mp">
             <Bullets num={parseInt(data.dynamic_friction)}></Bullets>
+          </p>
+
+          <p className="card__text-mp">
+            <b>Stickiness</b>
+          </p>
+          <p className="card__text-mp">
+            <Bullets num={parseInt(data.stickiness)}></Bullets>
           </p>
         </div>
 
