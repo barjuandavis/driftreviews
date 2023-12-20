@@ -54,7 +54,7 @@ function App() {
             create a Tab button for each content type
             style it using Tailwind
             */}
-            <Tabs defaultValue="account" className="w-full">
+            <Tabs defaultValue="mouse" className="w-full">
               <TabsList className="py-2 bg-slate-300">
                 <TabsTrigger
                   className="px-8"
