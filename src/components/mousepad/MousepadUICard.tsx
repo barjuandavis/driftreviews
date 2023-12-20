@@ -1,26 +1,29 @@
 import { motion } from "framer-motion";
-import { type MousePost } from "../../api/prismic";
+import { type MousepadPost } from "../../api/prismic";
 
 import RankBadge from "./badges/RankBadge";
-import PriceRangeBadge, { PriceRanges } from "./badges/PriceRangeBadge";
-import MouseShapeBadge, { MouseShapes } from "./badges/MouseShapeBadge";
+import PriceRangeBadge, { MousepadPrices } from "./badges/PriceRangeBadge";
+
 import ValueRatingBadge, { ValueRatings } from "./badges/ValueRatingBadge";
-import SizeBadge, { MouseSizes } from "./badges/SizeBadge";
+
 import TiktokSvg from "../../assets/tiktok.svg?react";
 import ShopeeSvg from "../../assets/shopee.svg?react";
 import TokopediaPng from "../../assets/tokopedia.png";
 
 import posthog from "posthog-js";
 
-import "./mousecardstyles.css";
 import TokopediaWarning from "../sections/TokopediaWarning";
 import React from "react";
+import Bullets from "./badges/Bullets";
+
+import "./mousepadcardstyles.css";
 
 type MouseUICardProps = {
-  mousePost: MousePost;
+  mousepadPost: MousepadPost;
 };
-export default function MouseUICard(props: MouseUICardProps) {
-  const data = props.mousePost.data;
+export default function MousepadUICard(props: MouseUICardProps) {
+  const data = props.mousepadPost.data;
+
   const [tokopediaWarningOpened, setTokopediaWarningOpened] =
     React.useState(false);
   return (
@@ -31,7 +34,7 @@ export default function MouseUICard(props: MouseUICardProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       rel="noopener noreferrer"
-      className="card"
+      className="card-mp"
     >
       <TokopediaWarning
         opened={tokopediaWarningOpened}
@@ -41,36 +44,66 @@ export default function MouseUICard(props: MouseUICardProps) {
       <div className="card-image-container">
         <RankBadge rank={data.rank} />
         <img
-          className="card__image"
-          src={data?.mouse_image.url}
-          alt={data?.mouse_image.alt}
+          className="card__image-mp"
+          src={data?.mousepad_image.url}
+          alt={data?.mousepad_image.alt}
         />
       </div>
-      <div className="card__content">
+      <div className="card__content-mp">
         <div className="flex w-full flex-col h-fit items-start justify-start gap-2 mb-2">
           <div className="flex w-full gap-1 h-fit items-start justify-start">
             <ValueRatingBadge
               valueRating={data?.value_rating as ValueRatings}
             />
-            <SizeBadge size={data?.size as unknown as MouseSizes} />
-          </div>
-          <div className="flex w-full gap-1 h-fit items-start justify-start">
-            <MouseShapeBadge
-              mouseShape={data?.mouse_shape_type as MouseShapes}
-            />
-            <PriceRangeBadge priceRange={data?.price_range as PriceRanges} />
+            <PriceRangeBadge priceRange={data?.price_range as MousepadPrices} />
           </div>
         </div>
-        <p className="card__title">{data?.mouse_name_short}</p>
-        <div className="card__rating"></div>
-        <p className="card__text">
-          {data?.review_content_embed?.title ?? data?.short_description}
-        </p>
-        <div className="flex w-full justify-center items-center gap-4">
+
+        <p className="card__title-mp">{data?.mousepad_name}</p>
+        <div
+          className="
+          grid grid-cols-2 gap-x-4
+          "
+        >
+          <p className="card__text-mp">
+            <b>Height</b>
+          </p>
+          <p className="card__text-mp"> {data?.height} mm</p>
+          <p className="card__text-mp">
+            <b>Width</b>
+          </p>
+          <p className="card__text-mp"> {data?.width} mm</p>
+          <p className="card__text-mp">
+            <b>Thickness</b>
+          </p>
+          <p className="card__text-mp"> {data?.thickness} mm</p>
+          <p className="card__text-mp">
+            <b>Static Friction</b>
+          </p>
+          <p className="card__text-mp">
+            <Bullets num={parseInt(data.static_friction)}></Bullets>
+          </p>
+
+          <p className="card__text-mp">
+            <b>Dynamic Friction</b>
+          </p>
+          <p className="card__text-mp">
+            <Bullets num={parseInt(data.dynamic_friction)}></Bullets>
+          </p>
+
+          <p className="card__text-mp">
+            <b>Stickiness</b>
+          </p>
+          <p className="card__text-mp">
+            <Bullets num={parseInt(data.stickiness)}></Bullets>
+          </p>
+        </div>
+
+        <div className="flex w-full justify-center items-center gap-4 py-2">
           <button
             onClick={() => {
               posthog.capture("Affiliate Link Clicked", {
-                mouse_name: data?.mouse_name_short,
+                mouse_name: data?.mousepad_name,
                 affiliate_link: data?.affiliate_link_tokopedia?.url,
                 platform: "tokopedia",
               });
@@ -101,7 +134,7 @@ export default function MouseUICard(props: MouseUICardProps) {
             rel="noopener noreferrer"
             onClick={() => {
               posthog.capture("Affiliate Link Clicked", {
-                mouse_name: data?.mouse_name_short,
+                mouse_name: data?.mousepad_name,
                 affiliate_link: data?.affiliate_link?.url,
                 platform: "shopee",
               });
@@ -120,7 +153,7 @@ export default function MouseUICard(props: MouseUICardProps) {
             href={data?.review_content_embed?.embed_url}
             onClick={() => {
               posthog.capture("Tiktok Link Clicked", {
-                mouse_name: data?.mouse_name_short,
+                mouse_name: data?.mousepad_name,
                 tiktok_link: data?.review_content_embed?.embed_url,
               });
             }}

@@ -35,3 +35,15 @@ export function convertRankIntoNumber(rank: string) {
   //use index + 1
   return generateRanks().indexOf(rank) + 1;
 }
+
+export function generateSizes() {
+  return ["S", "S-M", "M-L", "L"];
+}
+
+export const mousepadPrices = [
+  "Under 100 Ribu",
+  "100 Ribu - 250 Ribu",
+  "250 Ribu - 500 Ribu",
+  "500 - 1 Juta",
+  "1 Juta Keatas",
+] as const;

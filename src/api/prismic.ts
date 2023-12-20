@@ -12,6 +12,14 @@ export type MousePost = {
   data: Mouse;
 };
 
+export type MousepadPost = {
+  id: string;
+  first_publication_date: string;
+  last_publication_date: string;
+  lang: string;
+  data: Mousepad;
+};
+
 export type MouseImage = {
   dimensions: { width: number; height: number };
   alt: string;
@@ -58,6 +66,7 @@ export type AffiliateLink = {
 };
 
 export type Mouse = {
+  size: string;
   rank: string;
   brand: MouseBrand;
   mouse_name_short: string;
@@ -74,8 +83,27 @@ export type Mouse = {
   body: string[];
 };
 
-export const getAllMouse = async () => {
-  const prismicDoc = await client.getAllByType("mouse");
+export type Mousepad = {
+  rank: string;
+  brand: MouseBrand;
+  mousepad_name: string;
+  price_range: string;
+  value_rating: string;
+  static_friction: string;
+  dynamic_friction: string;
+  stickiness: string;
+  height: number;
+  width: number;
+  thickness: number;
+  mousepad_image: MouseImage;
+  short_description: string;
+  review_content_embed: ReviewContentEmbed;
+  affiliate_link: AffiliateLink;
+  affiliate_link_tokopedia: AffiliateLink;
+};
+
+export const getAllItemByType = async (type: string) => {
+  const prismicDoc = await client.getAllByType(type);
   const doc = prismicDoc.map((doc) => {
     return {
       id: doc.id,
@@ -85,5 +113,15 @@ export const getAllMouse = async () => {
       data: doc.data,
     };
   });
-  return doc as MousePost[];
+  return doc;
+};
+
+export const getAllMouse = async () => {
+  const prismicDoc = (await getAllItemByType("mouse")) as MousePost[];
+  return prismicDoc;
+};
+
+export const getAllMousepad = async () => {
+  const prismicDoc = (await getAllItemByType("mousepad")) as MousepadPost[];
+  return prismicDoc;
 };
