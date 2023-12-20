@@ -1,30 +1,30 @@
+import { mousepadPrices } from "@/lib/generateValues";
 import GenericBadge from "./GenericBadge";
-export type PriceRanges =
-  | "Under 200 Ribu"
-  | "200 Ribu - 500 Ribu"
-  | "500 Ribu - 1 Juta"
-  | "1 Juta - 1.5 Juta"
-  | "1.5 Juta - 2 Juta"
-  | "Diatas 2 Juta";
+
+export type MousepadPrices = (typeof mousepadPrices)[number];
 
 type BadgeProps = {
-  priceRange: PriceRanges;
+  priceRange: MousepadPrices;
 };
 
 export default function PriceRangeBadge({
-  priceRange = "Under 200 Ribu",
+  priceRange = "Under 100 Ribu",
 }: BadgeProps) {
-  const priceRangeMap = {
-    "Under 200 Ribu": "bg-yellow-100 text-yellow-800",
-    "200 Ribu - 500 Ribu": "bg-yellow-200 text-yellow-800",
-    "500 Ribu - 1 Juta": "bg-yellow-300 text-yellow-800",
-    "1 Juta - 1.5 Juta": "bg-yellow-400 text-yellow-800",
-    "1.5 Juta - 2 Juta": "bg-yellow-500 text-white",
-    "Diatas 2 Juta": "bg-yellow-600 text-yellow-100",
-  };
+  const priceRangeMap = [
+    "bg-yellow-100 text-yellow-800",
+    "bg-yellow-200 text-yellow-800",
+    "bg-yellow-300 text-yellow-800",
+    "bg-yellow-400 text-yellow-800",
+    "bg-yellow-600 text-yellow-100",
+  ];
+
+  const indexOfPriceRange = Math.max(
+    mousepadPrices.findIndex((val) => val === priceRange),
+    0
+  );
 
   return (
-    <GenericBadge className={priceRangeMap[priceRange]}>
+    <GenericBadge className={priceRangeMap[indexOfPriceRange]}>
       <span>{priceRange}</span>
     </GenericBadge>
   );

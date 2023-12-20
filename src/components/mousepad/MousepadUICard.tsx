@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { type MousepadPost } from "../../api/prismic";
 
 import RankBadge from "./badges/RankBadge";
-import PriceRangeBadge, { PriceRanges } from "./badges/PriceRangeBadge";
+import PriceRangeBadge, { MousepadPrices } from "./badges/PriceRangeBadge";
 
 import ValueRatingBadge, { ValueRatings } from "./badges/ValueRatingBadge";
 
@@ -12,14 +12,16 @@ import TokopediaPng from "../../assets/tokopedia.png";
 
 import posthog from "posthog-js";
 
-import "./mousecardstyles.css";
 import TokopediaWarning from "../sections/TokopediaWarning";
 import React from "react";
+import Bullets from "./badges/Bullets";
+
+import "./mousepadcardstyles.css";
 
 type MouseUICardProps = {
   mousepadPost: MousepadPost;
 };
-export default function MouseUICard(props: MouseUICardProps) {
+export default function MousepadUICard(props: MouseUICardProps) {
   const data = props.mousepadPost.data;
   console.log(data);
   const [tokopediaWarningOpened, setTokopediaWarningOpened] =
@@ -32,7 +34,7 @@ export default function MouseUICard(props: MouseUICardProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       rel="noopener noreferrer"
-      className="card"
+      className="card-mp"
     >
       <TokopediaWarning
         opened={tokopediaWarningOpened}
@@ -42,28 +44,55 @@ export default function MouseUICard(props: MouseUICardProps) {
       <div className="card-image-container">
         <RankBadge rank={data.rank} />
         <img
-          className="card__image"
+          className="card__image-mp"
           src={data?.mousepad_image.url}
           alt={data?.mousepad_image.alt}
         />
       </div>
-      <div className="card__content">
+      <div className="card__content-mp">
         <div className="flex w-full flex-col h-fit items-start justify-start gap-2 mb-2">
           <div className="flex w-full gap-1 h-fit items-start justify-start">
             <ValueRatingBadge
               valueRating={data?.value_rating as ValueRatings}
             />
-            <PriceRangeBadge priceRange={data?.price_range as PriceRanges} />
+            <PriceRangeBadge priceRange={data?.price_range as MousepadPrices} />
           </div>
         </div>
-        <p className="card__title">{data?.mousepad_name}</p>
-        <div className="card__rating"></div>
-        <p className="card__text">
-          Height: {data?.height} mm Width: {data?.width} mm Thickness:
-          {data?.thickness} mm Static Friction: {data?.static_friction}
-          Dynamic Friction: {data?.dynamic_friction}
-        </p>
-        <div className="flex w-full justify-center items-center gap-4">
+
+        <p className="card__title-mp">{data?.mousepad_name}</p>
+        <div
+          className="
+          grid grid-cols-2 gap-x-4
+          "
+        >
+          <p className="card__text-mp">
+            <b>Height</b>
+          </p>
+          <p className="card__text-mp"> {data?.height} mm</p>
+          <p className="card__text-mp">
+            <b>Width</b>
+          </p>
+          <p className="card__text-mp"> {data?.width} mm</p>
+          <p className="card__text-mp">
+            <b>Thickness</b>
+          </p>
+          <p className="card__text-mp"> {data?.thickness} mm</p>
+          <p className="card__text-mp">
+            <b>Static Friction</b>
+          </p>
+          <p className="card__text-mp">
+            <Bullets num={parseInt(data.static_friction)}></Bullets>
+          </p>
+
+          <p className="card__text-mp">
+            <b>Dynamic Friction</b>
+          </p>
+          <p className="card__text-mp">
+            <Bullets num={parseInt(data.dynamic_friction)}></Bullets>
+          </p>
+        </div>
+
+        <div className="flex w-full justify-center items-center gap-4 py-2">
           <button
             onClick={() => {
               posthog.capture("Affiliate Link Clicked", {
