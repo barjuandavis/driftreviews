@@ -54,6 +54,7 @@ function App() {
             create a Tab button for each content type
             style it using Tailwind
             */}
+            <VariousLinksSection opened={variousLinksOpened} />
             <Tabs defaultValue="mouse" className="w-full">
               <TabsList className="py-2 bg-slate-300">
                 <TabsTrigger
@@ -83,7 +84,6 @@ function App() {
               </TabsContent>
             </Tabs>
           </div>
-          <VariousLinksSection opened={variousLinksOpened} />
           <MouseAbout
             opened={aboutOpened === "mouse"}
             setOpen={setAboutSectionBasedOnContentType}
