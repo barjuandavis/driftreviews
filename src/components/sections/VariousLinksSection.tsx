@@ -40,6 +40,11 @@ export default function VariousLinksSection(props: { opened: boolean }) {
           content="Mouse Feet Dot Skates Tiger Arc"
           type="tokopedia"
         />
+        <LinkButton
+          href="https://www.tokopedia.com/drift-thrift?utm_source=driftreviews"
+          content="Toped Barang Sekennya DRiFT"
+          type="tokopedia"
+        />
       </div>
     </SlideoutSection>
   );
