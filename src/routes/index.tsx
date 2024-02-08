@@ -10,16 +10,36 @@ import MousepadAbout from "@/components/about/MousepadAbout";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import NewMousepadList from "@/components/NewMousepadList";
+import { z } from "zod";
+import {
+  Link,
+  createFileRoute,
+  useNavigate,
+  useSearch,
+} from "@tanstack/react-router";
 
-import { createLazyFileRoute } from "@tanstack/react-router";
+const searchSchema = z.object({
+  itemType: z.enum(["mouse", "mousepad"]).catch("mouse"),
+});
 
-export const Route = createLazyFileRoute("/")({
+//type Search = z.infer<typeof searchSchema>
+
+export const Route = createFileRoute("/")({
   component: Index,
+  validateSearch: searchSchema,
 });
 
 function Index() {
+  const { itemType } = useSearch({
+    from: Route.fullPath,
+  });
+  const navigate = useNavigate({
+    from: Route.fullPath,
+  });
+
   useEffect(() => {
     posthog.capture("Homepage Viewed");
+    console.log("itemType", itemType);
   }, []);
 
   type ContentType = "mouse" | "mousepad";
@@ -28,14 +48,14 @@ function Index() {
     ContentType | null | undefined
   >(undefined);
   const [variousLinksOpened, setVariousLinksOpened] = useState(false);
-  const [contentType, setContentType] = useState<ContentType>("mouse");
+
+  //convert to usestate to search params using tanstack router
 
   const setAboutSectionBasedOnContentType = (open: boolean) => {
-    if (contentType === "mouse") {
-      setAboutOpened(open ? "mouse" : undefined);
-    } else {
-      setAboutOpened(open ? "mousepad" : undefined);
-    }
+    posthog.capture("About Section Toggled", {
+      itemType,
+    });
+    setAboutOpened(open ? itemType : null);
   };
 
   return (
@@ -61,22 +81,33 @@ function Index() {
             style it using Tailwind
             */}
             <VariousLinksSection opened={variousLinksOpened} />
-            <Tabs defaultValue="mouse" className="w-full">
+            <Tabs defaultValue={itemType} className="w-full">
               <TabsList className="py-2 bg-slate-300">
                 <TabsTrigger
                   className="px-8"
                   value="mouse"
                   onClick={() => {
-                    setContentType("mouse");
+                    posthog.capture("Tab Clicked", {
+                      tab: "Mouse",
+                    });
+                    navigate({
+                      search: () => ({ itemType: "mouse" }),
+                    });
                   }}
                 >
                   Mouse
                 </TabsTrigger>
+
                 <TabsTrigger
                   value="mousepad"
                   className="px-8"
                   onClick={() => {
-                    setContentType("mousepad");
+                    posthog.capture("Tab Clicked", {
+                      tab: "Mousepad",
+                    });
+                    navigate({
+                      search: () => ({ itemType: "mousepad" }),
+                    });
                   }}
                 >
                   Mousepad
