@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NewMouseList from "../components/NewMouseList";
-import "./App.css";
+import "./index.css";
 import MouseAbout from "../components/about/MouseAbout";
 
 import posthog from "posthog-js";
@@ -11,7 +11,13 @@ import MousepadAbout from "@/components/about/MousepadAbout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import NewMousepadList from "@/components/NewMousepadList";
 
-function App() {
+import { createLazyFileRoute } from "@tanstack/react-router";
+
+export const Route = createLazyFileRoute("/")({
+  component: Index,
+});
+
+function Index() {
   useEffect(() => {
     posthog.capture("Homepage Viewed");
   }, []);
@@ -97,5 +103,3 @@ function App() {
     </>
   );
 }
-
-export default App;
