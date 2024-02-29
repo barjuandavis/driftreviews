@@ -1,9 +1,11 @@
-import useFilterStore, { FilterTypes } from "./filterStore";
+import { useMouseFilterStore, MouseFilters } from "./filterStore";
 
 export default function getCurrentFilterValueState(
   value: string,
-  whatToFilter: FilterTypes
+  page: "mouse" | "keyboard" | "mousepad" = "mouse",
+  whatToFilter: keyof MouseFilters,
 ) {
-  const filters = useFilterStore.getState().filters;
-  return filters[whatToFilter].indexOf(value) !== -1;
+  if (page === "mouse") {
+    return useMouseFilterStore.getState().filters[whatToFilter].includes(value);
+  }
 }

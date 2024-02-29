@@ -3,23 +3,24 @@ import { useEffect, useState } from "react";
 import MouseUICard from "../components/mouse/MouseUICard";
 
 import { MousePost, getAllMouse } from "../api/prismic";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import MouseNotFoundSection from "./mouse/MouseNotFoundSection";
 
-import FilterSection from "./sections/FilterSection";
+import FilterSection from "./sections/MouseFilterSection";
 
-import useFilterStore from "../lib/filterStore";
+import { useMouseFilterStore } from "../lib/filterStore";
 import { convertRankIntoNumber } from "../lib/generateValues";
-import FilterInputsSection from "./sections/FilterInputsSection";
+
 import LoadingScreen from "./sections/LoadingScreen";
+import FilterInputsMergedSection from "./sections/FilterInputsMergedSection";
 
 export default function NewMouseList() {
   const [mouseData, setMouseData] = useState<MousePost[]>([] as MousePost[]);
   const [filterButtonOpened, setFilterButtonOpened] = useState(false);
   const [filterInputsSectionsOpened, setFilterInputsSectionsOpened] =
     useState(false);
-  const filters = useFilterStore((state) => state.filters);
-  const searchTerm = useFilterStore((state) => state.searchTerm);
+  const filters = useMouseFilterStore((state) => state.filters);
+  const searchTerm = useMouseFilterStore((state) => state.searchTerm);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -58,60 +59,24 @@ export default function NewMouseList() {
       );
     })
     .sort(
-      (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating)
+      (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating),
     );
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <motion.div
-        // animate when the previous input button has been scrolled away\
-        onViewportLeave={() => {
-          setFilterInputsSectionsOpened(true);
-        }}
-        onViewportEnter={() => {
-          setFilterInputsSectionsOpened(false);
-        }}
-        className="flex flex-wrap gap-4 w-full justify-center"
-      >
-        <FilterInputsSection
-          isAbsolute={false}
-          setFilterButtonOpened={setFilterButtonOpened}
-        />
-      </motion.div>
-      <AnimatePresence>
-        {filterInputsSectionsOpened && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              position: "fixed",
-              display: "flex",
-              justifyContent: "center",
-              width: "100vw",
-              height: "12vh",
-              zIndex: 100,
-              top: 0,
-              left: 0,
-              background:
-                "linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(255,255,255,0) 100%)",
-            }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
-          >
-            <FilterInputsSection
-              isAbsolute={true}
-              setFilterButtonOpened={setFilterButtonOpened}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <FilterSection
         opened={filterButtonOpened}
         setOpen={setFilterButtonOpened}
         mouseData={mouseData}
       />
 
-      <div className="flex flex-wrap justify-center max-w-800 my-4 mx-auto w-full gap-4">
+      <FilterInputsMergedSection
+        filterInputsSectionsOpened={filterInputsSectionsOpened}
+        setFilterButtonOpened={setFilterButtonOpened}
+        setFilterInputsSectionsOpened={setFilterInputsSectionsOpened}
+      />
+
+      <div className="flex flex-wrap justify-center max-w-full my-4 mx-auto w-full gap-4">
         <AnimatePresence>
           {loading && <LoadingScreen key="just-a-loading-screen" />}
           {filteredMouse.length > 0 && !loading ? (

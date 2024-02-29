@@ -10,9 +10,9 @@ import {
 } from "../../lib/generateValues";
 
 import getCurrentFilterValue from "../../lib/getCurrentFilterValue";
-import useFilterStore from "../../lib/filterStore";
+import { useMouseFilterStore } from "../../lib/filterStore";
 
-export default function FilterSection(props: {
+export default function MouseFilterSection(props: {
   opened: boolean;
   setOpen: (opened: boolean) => void;
   mouseData: MousePost[];
@@ -23,7 +23,9 @@ export default function FilterSection(props: {
   const mouseShapes = generateMouseShapes();
   const ranks = generateRanks();
   const sizes = generateSizes();
-  const toggleFilterValue = useFilterStore((state) => state.toggleFilterValue);
+  const toggleFilterValue = useMouseFilterStore(
+    (state) => state.toggleFilterValue,
+  );
 
   return (
     <PopupSection opened={props.opened} setOpened={props.setOpen}>
@@ -38,7 +40,7 @@ export default function FilterSection(props: {
                 type="button"
                 key={brand}
                 className={`${
-                  getCurrentFilterValue(brand, "brands")
+                  getCurrentFilterValue(brand, "mouse", "brands")
                     ? "button-toggle"
                     : "link-button"
                 }`}
@@ -57,7 +59,7 @@ export default function FilterSection(props: {
               type="button"
               key={valueRating}
               className={`${
-                getCurrentFilterValue(valueRating, "valueRating")
+                getCurrentFilterValue(valueRating, "mouse", "valueRating")
                   ? "button-toggle"
                   : "link-button"
               }`}
@@ -76,7 +78,7 @@ export default function FilterSection(props: {
               type="button"
               key={priceRange}
               className={`${
-                getCurrentFilterValue(priceRange, "priceRange")
+                getCurrentFilterValue(priceRange, "mouse", "priceRange")
                   ? "button-toggle"
                   : "link-button"
               }`}
@@ -95,7 +97,7 @@ export default function FilterSection(props: {
               type="button"
               key={mouseShape}
               className={`${
-                getCurrentFilterValue(mouseShape, "shapes")
+                getCurrentFilterValue(mouseShape, "mouse", "shapes")
                   ? "button-toggle"
                   : "link-button"
               }`}
@@ -114,7 +116,7 @@ export default function FilterSection(props: {
               type="button"
               key={rank}
               className={`${
-                getCurrentFilterValue(rank, "ranks")
+                getCurrentFilterValue(rank, "mouse", "ranks")
                   ? "button-toggle"
                   : "link-button"
               }`}
@@ -130,9 +132,10 @@ export default function FilterSection(props: {
         <div className="flex flex-wrap gap-2">
           {sizes.map((size) => (
             <button
+              key={size}
               type="button"
               className={`${
-                getCurrentFilterValue(size, "sizes")
+                getCurrentFilterValue(size, "mouse", "sizes")
                   ? "button-toggle"
                   : "link-button"
               }`}

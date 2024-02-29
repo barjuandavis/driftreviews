@@ -28,7 +28,7 @@ const mouseFilterInitialState: MouseFilters = {
   sizes: [],
 };
 
-const useFilterStore = create<MouseFiltersState>()((set) => ({
+const useMouseFilterStore = create<MouseFiltersState>()((set) => ({
   searchTerm: "",
   filters: { ...mouseFilterInitialState },
   toggleFilterValue(filterType: FilterTypes, value: string) {
@@ -58,7 +58,7 @@ const useFilterStore = create<MouseFiltersState>()((set) => ({
   },
 }));
 
-const useFilterCacheStore = create<{
+const useMouseFilterCacheStore = create<{
   query: string;
   setQuery(query: string): void;
 }>((set) => ({
@@ -69,12 +69,11 @@ const useFilterCacheStore = create<{
 }));
 
 export function checkIfFiltersAreEmpty(type: "all" | "onlyFilters" = "all") {
-  const store = useFilterStore.getState();
+  const store = useMouseFilterStore.getState();
   const filters = store.filters;
   return (
     Object.values(filters).every((filter) => filter.length === 0) &&
     (type === "onlyFilters" ? true : store.searchTerm === "")
   );
 }
-export default useFilterStore;
-export { useFilterCacheStore };
+export { useMouseFilterCacheStore, useMouseFilterStore };
