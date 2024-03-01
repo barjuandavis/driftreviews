@@ -1,5 +1,5 @@
 import { MousePost } from "../../api/prismic";
-import PopupSection from "./PopupSection";
+import PopupSection from "../sections/PopupSection";
 import {
   generateBrandNamesFromMousePosts,
   generateMouseShapes,

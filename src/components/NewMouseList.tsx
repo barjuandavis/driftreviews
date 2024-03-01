@@ -6,7 +6,7 @@ import { MousePost, getAllMouse } from "../api/prismic";
 import { AnimatePresence } from "framer-motion";
 import MouseNotFoundSection from "./mouse/MouseNotFoundSection";
 
-import FilterSection from "./sections/MouseFilterSection";
+import FilterSection from "./mouse/MouseFilterSection";
 
 import { useMouseFilterStore } from "../lib/filterStore";
 import { convertRankIntoNumber } from "../lib/generateValues";
