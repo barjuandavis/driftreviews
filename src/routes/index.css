@@ -131,42 +131,42 @@ h1 {
 }
 
 .discord {
-  background: rgb(88, 101, 242) !important;
+  background-color: rgb(88, 101, 242);
   color: white;
 }
 
 .tiktok {
-  background: rgb(0, 0, 0) !important;
+  background-color: rgb(0, 0, 0);
   color: white;
 }
 
 .misc {
-  background: white !important;
+  background-color: white;
   color: black;
 }
 
 .misc-inverted {
-  background: black !important;
+  background-color: black;
   color: white;
 }
 
 .confirmed {
-  background: rgb(0, 255, 0) !important;
+  background-color: rgb(0, 255, 0);
   color: black;
 }
 
 .tokopedia {
-  background: rgb(104, 247, 123) !important;
+  background-color: rgb(104, 247, 123);
   color: black;
 }
 
 .shopee {
-  background: linear-gradient(-180deg, #f53d2d, #f63) !important;
+  background-color: #f53d2d;
   color: white;
 }
 
 .youtube {
-  background: rgb(255, 0, 0) !important;
+  background-color: rgb(255, 0, 0);
   color: white;
 }
 
