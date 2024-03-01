@@ -3,7 +3,7 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import posthog from "posthog-js";
 import { useEffect } from "react";
 
-export const Route = createLazyFileRoute("/mousepad")({
+export const Route = createLazyFileRoute("/keyboard")({
   component: MousepadPage,
 });
 

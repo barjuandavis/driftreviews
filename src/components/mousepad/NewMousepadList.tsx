@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 
-import MousepadUICard from "./mousepad/MousepadUICard";
+import MousepadUICard from "./MousepadUICard";
 
-import { MousepadPost, getAllMousepad } from "../api/prismic";
+import { MousepadPost, getAllMousepad } from "../../api/prismic";
 import { AnimatePresence } from "framer-motion";
-import MouseNotFoundSection from "./mousepad/MouseNotFoundSection";
+import MouseNotFoundSection from "./MouseNotFoundSection";
 
-import { convertRankIntoNumber } from "../lib/generateValues";
-import LoadingScreen from "./sections/LoadingScreen";
-import FilterInputsMergedSection from "./sections/FilterInputsMergedSection";
+import { convertRankIntoNumber } from "../../lib/generateValues";
+import LoadingScreen from "../sections/LoadingScreen";
+// import FilterInputsMergedSection from "../sections/FilterInputsMergedSection";
 
 export default function NewMousepadList() {
   const [mousepadData, setMousepadData] = useState<MousepadPost[]>(
     [] as MousepadPost[],
   );
-  const [filterButtonOpened, setFilterButtonOpened] = useState(false);
-  const [filterInputsSectionsOpened, setFilterInputsSectionsOpened] =
-    useState(false);
+  // const [filterButtonOpened, setFilterButtonOpened] = useState(false);
+  // const [filterInputsSectionsOpened, setFilterInputsSectionsOpened] =
+  useState(false);
   // const filters = useFilterStore((state) => state.filters);
   // const searchTerm = useFilterStore((state) => state.searchTerm);
   const [loading, setLoading] = useState(true);
@@ -62,12 +62,12 @@ export default function NewMousepadList() {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <FilterInputsMergedSection
+      {/* <FilterInputsMergedSection
         placeholder="Mau cari mousepad apa?"
         filterInputsSectionsOpened={filterInputsSectionsOpened}
         setFilterButtonOpened={setFilterButtonOpened}
         setFilterInputsSectionsOpened={setFilterInputsSectionsOpened}
-      />
+      /> */}
 
       <div className="flex flex-wrap justify-center max-w-800 my-4 mx-auto w-full gap-4">
         <AnimatePresence>

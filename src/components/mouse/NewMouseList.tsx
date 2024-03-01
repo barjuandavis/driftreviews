@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 
-import MouseUICard from "../components/mouse/MouseUICard";
+import MouseUICard from "./MouseUICard";
 
-import { MousePost, getAllMouse } from "../api/prismic";
+import { MousePost, getAllMouse } from "../../api/prismic";
 import { AnimatePresence } from "framer-motion";
-import MouseNotFoundSection from "./mouse/MouseNotFoundSection";
+import MouseNotFoundSection from "./MouseNotFoundSection";
 
-import FilterSection from "./mouse/MouseFilterSection";
+import FilterSection from "./MouseFilterSection";
 
-import { useMouseFilterStore } from "../lib/filterStore";
-import { convertRankIntoNumber } from "../lib/generateValues";
+import { useMouseFilterStore } from "../../lib/filterStore";
+import { convertRankIntoNumber } from "../../lib/generateValues";
 
-import LoadingScreen from "./sections/LoadingScreen";
-import FilterInputsMergedSection from "./sections/FilterInputsMergedSection";
+import LoadingScreen from "../sections/LoadingScreen";
+import FilterInputsMergedSection from "../sections/FilterInputsMergedSection";
 
 export default function NewMouseList() {
   const [mouseData, setMouseData] = useState<MousePost[]>([] as MousePost[]);

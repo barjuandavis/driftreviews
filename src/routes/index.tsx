@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import NewMouseList from "../components/NewMouseList";
+import NewMouseList from "../components/mouse/NewMouseList";
 import "./index.css";
 
 import posthog from "posthog-js";

@@ -10,7 +10,7 @@ export default function MousepadAbout(props: {
   return (
     <PopupSection opened={opened} setOpened={setOpen}>
       <h3>
-        <b>Gimana caranya membaca List Rekomendasi Mouse ini?</b>
+        <b>Gimana caranya membaca List Rekomendasi Mousepad ini?</b>
       </h3>
 
       <p className="text-left p-4">
@@ -23,14 +23,14 @@ export default function MousepadAbout(props: {
         </span>
         <br />
         <br />
-        Rank adalah peringkat mouse tersebut{" "}
+        Rank adalah peringkat mousepad tersebut{" "}
         <b>
-          hanya berdasarkan faktor fisik dari mouse tersebut{" "}
+          hanya berdasarkan faktor fisik dari mousepad tersebut{" "}
           <u>tanpa mempertimbangkan harga.</u>
         </b>
         <br />
         Semakin tinggi rank, semakin baik mouse tersebut secara kualitas build,
-        sensor, performa, kelengkapan, dan lain-lain.
+        jahitan, base, dan lain-lain.
         <br />
         <br />
         Rank yang ada adalah: <b>S, A+, A, B+, B, C+, C, dan F.</b> Rank S
@@ -40,17 +40,14 @@ export default function MousepadAbout(props: {
         Pertimbangan rank ini adalah sebagai berikut:
         <ul className="list-inside" style={{ listStyleType: "initial" }}>
           <li>
-            <b>S</b>: Mouse ini memiliki package yang luar biasa baik, baik dari
-            segi <i>build quality</i> maupun performa. Biasanya memiliki polling
-            rate diatas 4000Hz dan berat yang sangat ringan, tanpa mengorbankan
-            build quality.
+            <b>S</b>: Mousepad ini memiliki package yang luar biasa baik, baik
+            dari segi <i>build quality</i> maupun performa. Biasanya berbahan
+            dasar poron sebagai basenya.
           </li>
           <li>
-            <b>A+</b>: Mouse ini memiliki package yang sangat baik, baik dari
-            segi <i>build quality</i> maupun performa. Biasanya memiliki polling
-            rate hingga 4000Hz atau lebih dan berat yang ringan, dengan
-            mengorbankan sedikit build quality. Mouse yang ada di rank ini harus
-            memenuhi syarat rank A dan harus wireless.
+            <b>A+</b>: Mousepad ini memiliki package yang sangat baik, baik dari
+            segi <i>build quality</i> maupun performa. Biasanya berbahan dasar
+            poron sebagai basenya.
           </li>
           <li>
             <b>A</b>: Mouse ini memiliki package yang baik, baik dari segi{" "}

@@ -18,6 +18,7 @@ import { Route as IndexImport } from './routes/index'
 // Create Virtual Routes
 
 const MousepadLazyImport = createFileRoute('/mousepad')()
+const KeyboardLazyImport = createFileRoute('/keyboard')()
 
 // Create/Update Routes
 
@@ -25,6 +26,11 @@ const MousepadLazyRoute = MousepadLazyImport.update({
   path: '/mousepad',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/mousepad.lazy').then((d) => d.Route))
+
+const KeyboardLazyRoute = KeyboardLazyImport.update({
+  path: '/keyboard',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/keyboard.lazy').then((d) => d.Route))
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -39,6 +45,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/keyboard': {
+      preLoaderRoute: typeof KeyboardLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/mousepad': {
       preLoaderRoute: typeof MousepadLazyImport
       parentRoute: typeof rootRoute
@@ -48,6 +58,10 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, MousepadLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  KeyboardLazyRoute,
+  MousepadLazyRoute,
+])
 
 /* prettier-ignore-end */

@@ -1,11 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion";
-import FilterInputsSection from "./FilterInputsSection";
+import MouseFilterInputsSection from "../mouse/MouseFilterInputsSection";
+import { ContentType } from "@/consts";
 
 type FilterInputsMergedSectionProps = {
   setFilterButtonOpened: (value: boolean) => void;
   setFilterInputsSectionsOpened: (value: boolean) => void;
   filterInputsSectionsOpened: boolean;
   placeholder?: string;
+  contentType?: ContentType;
 };
 
 export default function FilterInputsMergedSection({
@@ -26,7 +28,7 @@ export default function FilterInputsMergedSection({
         }}
         className="flex flex-wrap gap-4 w-full justify-center"
       >
-        <FilterInputsSection
+        <MouseFilterInputsSection
           placeholder={placeholder}
           isAbsolute={false}
           setFilterButtonOpened={setFilterButtonOpened}
@@ -51,7 +53,7 @@ export default function FilterInputsMergedSection({
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
           >
-            <FilterInputsSection
+            <MouseFilterInputsSection
               placeholder={placeholder}
               isAbsolute={true}
               setFilterButtonOpened={setFilterButtonOpened}
