@@ -5,12 +5,14 @@ type FilterInputsMergedSectionProps = {
   setFilterButtonOpened: (value: boolean) => void;
   setFilterInputsSectionsOpened: (value: boolean) => void;
   filterInputsSectionsOpened: boolean;
+  placeholder?: string;
 };
 
 export default function FilterInputsMergedSection({
   setFilterButtonOpened,
   setFilterInputsSectionsOpened,
   filterInputsSectionsOpened,
+  placeholder,
 }: FilterInputsMergedSectionProps) {
   return (
     <>
@@ -25,6 +27,7 @@ export default function FilterInputsMergedSection({
         className="flex flex-wrap gap-4 w-full justify-center"
       >
         <FilterInputsSection
+          placeholder={placeholder}
           isAbsolute={false}
           setFilterButtonOpened={setFilterButtonOpened}
         />
@@ -49,6 +52,7 @@ export default function FilterInputsMergedSection({
             transition={{ duration: 0.2 }}
           >
             <FilterInputsSection
+              placeholder={placeholder}
               isAbsolute={true}
               setFilterButtonOpened={setFilterButtonOpened}
             />

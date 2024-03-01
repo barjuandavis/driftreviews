@@ -9,6 +9,7 @@ import { Input } from "../ui/input";
 import { useEffect } from "react";
 
 export default function FilterButtonsSection(props: {
+  placeholder?: string;
   isAbsolute: boolean;
   setFilterButtonOpened: (opened: boolean) => void;
 }) {
@@ -56,7 +57,7 @@ export default function FilterButtonsSection(props: {
         <div className="flex w-full gap-4 max-w-3xl">
           <Input
             type="text"
-            placeholder="Mau cari mouse apa?"
+            placeholder={props.placeholder ?? "Mau cari mouse apa?"}
             value={searchTermCache}
             onChange={(event) => {
               setSearchTermCache(event.target.value);

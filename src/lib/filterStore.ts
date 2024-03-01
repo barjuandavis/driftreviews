@@ -9,6 +9,12 @@ export type MouseFilters = {
   sizes: string[];
 };
 
+export type MousepadFilters = {
+  brands: string[];
+  priceRange: string[];
+  sizes: string[];
+};
+
 export type FilterTypes = keyof MouseFilters;
 
 export interface MouseFiltersState {

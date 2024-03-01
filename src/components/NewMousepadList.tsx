@@ -6,20 +6,17 @@ import { MousepadPost, getAllMousepad } from "../api/prismic";
 import { AnimatePresence } from "framer-motion";
 import MouseNotFoundSection from "./mousepad/MouseNotFoundSection";
 
-// import FilterSection from "./sections/FilterSection";
-// import useFilterStore from "../lib/filterStore";
-// import FilterInputsSection from "./sections/FilterInputsSection";
-
 import { convertRankIntoNumber } from "../lib/generateValues";
 import LoadingScreen from "./sections/LoadingScreen";
+import FilterInputsMergedSection from "./sections/FilterInputsMergedSection";
 
 export default function NewMousepadList() {
   const [mousepadData, setMousepadData] = useState<MousepadPost[]>(
-    [] as MousepadPost[]
+    [] as MousepadPost[],
   );
-  // const [filterButtonOpened, setFilterButtonOpened] = useState(false);
-  // const [filterInputsSectionsOpened, setFilterInputsSectionsOpened] =
-  //   useState(false);
+  const [filterButtonOpened, setFilterButtonOpened] = useState(false);
+  const [filterInputsSectionsOpened, setFilterInputsSectionsOpened] =
+    useState(false);
   // const filters = useFilterStore((state) => state.filters);
   // const searchTerm = useFilterStore((state) => state.searchTerm);
   const [loading, setLoading] = useState(true);
@@ -27,8 +24,8 @@ export default function NewMousepadList() {
   useEffect(() => {
     const fetchMouseData = async () => {
       setLoading(true);
-      const mouseData = await getAllMousepad();
-      setMousepadData(mouseData);
+      const mousepadData = await getAllMousepad();
+      setMousepadData(mousepadData);
       setLoading(false);
     };
     fetchMouseData();
@@ -60,58 +57,17 @@ export default function NewMousepadList() {
       );
     })
     .sort(
-      (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating)
+      (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating),
     );
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      {/* <motion.div
-        // animate when the previous input button has been scrolled away\
-        onViewportLeave={() => {
-          setFilterInputsSectionsOpened(true);
-        }}
-        onViewportEnter={() => {
-          setFilterInputsSectionsOpened(false);
-        }}
-        className="flex flex-wrap gap-4 w-full justify-center"
-      >
-        <FilterInputsSection
-          isAbsolute={false}
-          setFilterButtonOpened={setFilterButtonOpened}
-        />
-      </motion.div>
-      <AnimatePresence>
-        {filterInputsSectionsOpened && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              position: "fixed",
-              display: "flex",
-              justifyContent: "center",
-              width: "100vw",
-              height: "12vh",
-              zIndex: 100,
-              top: 0,
-              left: 0,
-              background:
-                "linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(255,255,255,0) 100%)",
-            }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
-          >
-            <FilterInputsSection
-              isAbsolute={true}
-              setFilterButtonOpened={setFilterButtonOpened}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <FilterSection
-        opened={filterButtonOpened}
-        setOpen={setFilterButtonOpened}
-        mouseData={mouseData}
-      /> */}
+      <FilterInputsMergedSection
+        placeholder="Mau cari mousepad apa?"
+        filterInputsSectionsOpened={filterInputsSectionsOpened}
+        setFilterButtonOpened={setFilterButtonOpened}
+        setFilterInputsSectionsOpened={setFilterInputsSectionsOpened}
+      />
 
       <div className="flex flex-wrap justify-center max-w-800 my-4 mx-auto w-full gap-4">
         <AnimatePresence>

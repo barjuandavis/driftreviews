@@ -64,16 +64,16 @@ export default function NewMouseList() {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <FilterSection
-        opened={filterButtonOpened}
-        setOpen={setFilterButtonOpened}
-        mouseData={mouseData}
-      />
-
       <FilterInputsMergedSection
         filterInputsSectionsOpened={filterInputsSectionsOpened}
         setFilterButtonOpened={setFilterButtonOpened}
         setFilterInputsSectionsOpened={setFilterInputsSectionsOpened}
+      />
+
+      <FilterSection
+        opened={filterButtonOpened}
+        setOpen={setFilterButtonOpened}
+        mouseData={mouseData}
       />
 
       <div className="flex flex-wrap justify-center max-w-full my-4 mx-auto w-full gap-4">

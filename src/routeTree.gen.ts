@@ -17,14 +17,14 @@ import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
+const MousepadLazyImport = createFileRoute('/mousepad')()
 
 // Create/Update Routes
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
+const MousepadLazyRoute = MousepadLazyImport.update({
+  path: '/mousepad',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/mousepad.lazy').then((d) => d.Route))
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -39,8 +39,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      preLoaderRoute: typeof AboutLazyImport
+    '/mousepad': {
+      preLoaderRoute: typeof MousepadLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -48,6 +48,6 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, AboutLazyRoute])
+export const routeTree = rootRoute.addChildren([IndexRoute, MousepadLazyRoute])
 
 /* prettier-ignore-end */
