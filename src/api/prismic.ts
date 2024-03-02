@@ -69,30 +69,29 @@ export type AffiliateLink = {
   target: string;
 };
 
-export type Mouse = {
-  size: string;
+export interface Item {
   rank: string;
   brand: Brand;
-  mouse_name_short: string;
-  mouse_shape_type: string;
   price_range: string;
   value_rating: string;
+  review_content_embed: ReviewContentEmbed;
+  affiliate_link: AffiliateLink;
+  affiliate_link_tokopedia: AffiliateLink;
+}
+
+export interface Mouse extends Item {
+  size: string;
+  mouse_name_short: string;
+  mouse_shape_type: string;
   mouse_name: string[];
   mouse_image: PrismicImage;
   short_description: string;
   long_description: string[];
-  review_content_embed: ReviewContentEmbed;
-  affiliate_link: AffiliateLink;
-  affiliate_link_tokopedia: AffiliateLink;
   body: string[];
-};
+}
 
-export type Mousepad = {
-  rank: string;
-  brand: Brand;
+export interface Mousepad extends Item {
   mousepad_name: string;
-  price_range: string;
-  value_rating: string;
   static_friction: string;
   dynamic_friction: string;
   stickiness: string;
@@ -101,29 +100,19 @@ export type Mousepad = {
   thickness: number;
   mousepad_image: PrismicImage;
   short_description: string;
-  review_content_embed: ReviewContentEmbed;
-  affiliate_link: AffiliateLink;
-  affiliate_link_tokopedia: AffiliateLink;
-};
+}
 
-export type Keyboard = {
-  keyboard_image: PrismicImage;
+export interface Keyboard extends Item {
+  image: PrismicImage;
   keyboard_name: string;
   keyboard_size: string;
   keyboard_keycaps_bawaan: string;
   keyboard_switch: string;
   keyboard_case: string;
   keyboard_koneksi: string;
+  keyboard_layout: string;
   is_rapid_trigger: boolean;
-  rank: string;
-  brand: Brand;
-  price_range: string;
-  value_rating: string;
-  review_content_embed: ReviewContentEmbed;
-  affiliate_link: AffiliateLink;
-  affiliate_link_tokopedia: AffiliateLink;
-  body: string[];
-};
+}
 
 export const getAllItemByType = async (type: string) => {
   const prismicDoc = await client.getAllByType(type);
@@ -136,7 +125,7 @@ export const getAllItemByType = async (type: string) => {
       data: doc.data,
     };
   });
-  return doc;
+  return doc as Post[];
 };
 
 export const getAllMouse = async () => {
@@ -146,5 +135,10 @@ export const getAllMouse = async () => {
 
 export const getAllMousepad = async () => {
   const prismicDoc = (await getAllItemByType("mousepad")) as MousepadPost[];
+  return prismicDoc;
+};
+
+export const getAllKeyboard = async () => {
+  const prismicDoc = (await getAllItemByType("keyboard")) as KeyboardPost[];
   return prismicDoc;
 };

@@ -42,11 +42,13 @@ export function generateRanksFromMousePosts(mousePosts: MousePost[]) {
   );
 }
 
+export function cleanUpPriceRange(range: string) {
+  //every rank will have a number and close bracket in the beginning. Example: "1) Under 500 Ribu"
+  //clean it
+  return range.slice(3);
+}
+
 export function convertRankIntoNumber(rank: string) {
-  //use index + 1
-  //rule is S < A < B < C < F
-  // A+ < A, B+ < B, C+ < C.
-  //Create a conversion function where the rule above satisfies. CONVERT TO NUMBER SO WE CAN SORT
   return ["S", "A+", "A", "B+", "B", "C+", "C", "F"].indexOf(rank[0]) + 1;
 }
 

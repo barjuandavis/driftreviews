@@ -1,16 +1,17 @@
-import NewMousepadList from "@/components/mousepad/NewMousepadList";
+import KeyboardList from "@/components/keyboard/KeyboardList";
+
 import { createLazyFileRoute } from "@tanstack/react-router";
 import posthog from "posthog-js";
 import { useEffect } from "react";
 
 export const Route = createLazyFileRoute("/keyboard")({
-  component: MousepadPage,
+  component: KeyboardPage,
 });
 
-function MousepadPage() {
+function KeyboardPage() {
   useEffect(() => {
-    posthog.capture("Mousepad Page Viewed");
+    posthog.capture("Keyboard Page Viewed");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <NewMousepadList />;
+  return <KeyboardList />;
 }
