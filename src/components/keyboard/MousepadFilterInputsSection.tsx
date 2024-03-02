@@ -1,32 +1,34 @@
 import FilterEmptySvg from "../../assets/filter-kosong.svg?react";
 import FilterFilledSvg from "../../assets/filter-isi.svg?react";
-import useFilterStore, {
+import {
+  useMouseFilterStore,
+  useMouseFilterCacheStore,
   checkIfFiltersAreEmpty,
-  useFilterCacheStore,
 } from "@/lib/filterStore";
 import { Input } from "../ui/input";
 import { useEffect } from "react";
 
 export default function FilterButtonsSection(props: {
+  placeholder?: string;
   isAbsolute: boolean;
   setFilterButtonOpened: (opened: boolean) => void;
 }) {
-  const resetFilters = useFilterStore((state) => state.resetFilterValues);
+  const resetFilters = useMouseFilterStore((state) => state.resetFilterValues);
   const filterIsEmptyAndSearchTermIsEmpty = checkIfFiltersAreEmpty();
   const filterIsEmpty = checkIfFiltersAreEmpty("onlyFilters");
-  const [searchTerm, setSearchTerm] = useFilterStore((state) => [
+  const [searchTerm, setSearchTerm] = useMouseFilterStore((state) => [
     state.searchTerm,
     state.setSearchTerm,
   ]);
-  const [searchTermCache, setSearchTermCache] = useFilterCacheStore((state) => [
-    state.query,
-    state.setQuery,
-  ]);
+  const [searchTermCache, setSearchTermCache] = useMouseFilterCacheStore(
+    (state) => [state.query, state.setQuery],
+  );
 
   useEffect(() => {
     if (searchTermCache === "") {
       setSearchTermCache(searchTerm ?? "");
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -55,7 +57,7 @@ export default function FilterButtonsSection(props: {
         <div className="flex w-full gap-4 max-w-3xl">
           <Input
             type="text"
-            placeholder="Mau cari mouse apa?"
+            placeholder={props.placeholder ?? "Mau cari mouse apa?"}
             value={searchTermCache}
             onChange={(event) => {
               setSearchTermCache(event.target.value);

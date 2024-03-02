@@ -21,6 +21,17 @@ export default function VariousLinksSection(props: { opened: boolean }) {
           type="tiktok"
         />
         <LinkButton
+          href="https://saweria.co/barjuandavis"
+          className="!bg-amber-300 !text-black"
+          content="Saweria"
+          type="misc-inverted"
+        />
+        <LinkButton
+          href="https://github.com/barjuandavis"
+          content="Github"
+          type="misc-inverted"
+        />
+        <LinkButton
           href="https://tokopedia.link/LCbijyxYSBb"
           content="Manset/Armsleeve"
           type="tokopedia"

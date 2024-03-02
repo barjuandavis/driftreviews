@@ -9,16 +9,20 @@ type LinkButtonProps = {
     | "misc"
     | "misc-inverted"
     | "confirmed";
+  className?: string;
 };
 
 export default function LinkButton({
   href,
   content = "",
   type = "misc",
+  className,
 }: LinkButtonProps) {
   return (
     <a
-      className={type ? `link-button ${type}` : "link-button"}
+      className={
+        className ? `${className} link-button ${type}` : `link-button ${type}`
+      }
       target="_blank"
       rel="noreferrer noopener"
       href={href}
