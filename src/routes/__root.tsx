@@ -23,9 +23,7 @@ function Root() {
       : router.location.pathname.split("/")[1]
   ) as ContentType;
 
-  const [aboutOpened, setAboutOpened] = useState<
-    ContentType | null | undefined
-  >(undefined);
+  const [aboutOpened, setAboutOpened] = useState<ContentType | null>(null);
 
   const [variousLinksOpened, setVariousLinksOpened] = useState(false);
 

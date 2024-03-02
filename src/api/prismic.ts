@@ -4,23 +4,27 @@ const client = prismic.createClient(repositoryName, {
   accessToken: import.meta.env.VITE_PRISMIC_PERMANENT_TOKEN,
 });
 
-export type MousePost = {
+export interface Post {
   id: string;
   first_publication_date: string;
   last_publication_date: string;
   lang: string;
+  data: unknown;
+}
+
+export interface KeyboardPost extends Post {
+  data: Keyboard;
+}
+
+export interface MousePost extends Post {
   data: Mouse;
-};
+}
 
-export type MousepadPost = {
-  id: string;
-  first_publication_date: string;
-  last_publication_date: string;
-  lang: string;
+export interface MousepadPost extends Post {
   data: Mousepad;
-};
+}
 
-export type MouseImage = {
+export type PrismicImage = {
   dimensions: { width: number; height: number };
   alt: string;
   copyright: string | null;
@@ -47,7 +51,7 @@ export type ReviewContentEmbed = {
   embed_url: string;
 };
 
-export type MouseBrand = {
+export type Brand = {
   id: string;
   type: string;
   tags: string[];
@@ -68,13 +72,13 @@ export type AffiliateLink = {
 export type Mouse = {
   size: string;
   rank: string;
-  brand: MouseBrand;
+  brand: Brand;
   mouse_name_short: string;
   mouse_shape_type: string;
   price_range: string;
   value_rating: string;
   mouse_name: string[];
-  mouse_image: MouseImage;
+  mouse_image: PrismicImage;
   short_description: string;
   long_description: string[];
   review_content_embed: ReviewContentEmbed;
@@ -85,7 +89,7 @@ export type Mouse = {
 
 export type Mousepad = {
   rank: string;
-  brand: MouseBrand;
+  brand: Brand;
   mousepad_name: string;
   price_range: string;
   value_rating: string;
@@ -95,11 +99,30 @@ export type Mousepad = {
   height: number;
   width: number;
   thickness: number;
-  mousepad_image: MouseImage;
+  mousepad_image: PrismicImage;
   short_description: string;
   review_content_embed: ReviewContentEmbed;
   affiliate_link: AffiliateLink;
   affiliate_link_tokopedia: AffiliateLink;
+};
+
+export type Keyboard = {
+  keyboard_image: PrismicImage;
+  keyboard_name: string;
+  keyboard_size: string;
+  keyboard_keycaps_bawaan: string;
+  keyboard_switch: string;
+  keyboard_case: string;
+  keyboard_koneksi: string;
+  is_rapid_trigger: boolean;
+  rank: string;
+  brand: Brand;
+  price_range: string;
+  value_rating: string;
+  review_content_embed: ReviewContentEmbed;
+  affiliate_link: AffiliateLink;
+  affiliate_link_tokopedia: AffiliateLink;
+  body: string[];
 };
 
 export const getAllItemByType = async (type: string) => {

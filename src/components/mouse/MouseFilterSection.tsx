@@ -2,11 +2,11 @@ import { MousePost } from "../../api/prismic";
 import PopupSection from "../sections/PopupSection";
 import {
   generateBrandNamesFromMousePosts,
-  generateMouseShapes,
-  generatePriceRanges,
-  generateRanks,
-  generateSizes,
-  generateValueRatings,
+  generateMouseShapesFromMousePosts,
+  generateMouseSizesFromMousePosts,
+  generatePriceRangesFromMousePosts,
+  generateRanksFromMousePosts,
+  generateValueRatingsFromMousePosts,
 } from "../../lib/generateValues";
 
 import getCurrentFilterValue from "../../lib/getCurrentFilterValue";
@@ -18,11 +18,11 @@ export default function MouseFilterSection(props: {
   mouseData: MousePost[];
 }) {
   const brands = generateBrandNamesFromMousePosts(props.mouseData);
-  const valueRatings = generateValueRatings();
-  const priceRanges = generatePriceRanges();
-  const mouseShapes = generateMouseShapes();
-  const ranks = generateRanks();
-  const sizes = generateSizes();
+  const valueRatings = generateValueRatingsFromMousePosts(props.mouseData);
+  const priceRanges = generatePriceRangesFromMousePosts(props.mouseData);
+  const mouseShapes = generateMouseShapesFromMousePosts(props.mouseData);
+  const ranks = generateRanksFromMousePosts(props.mouseData);
+  const sizes = generateMouseSizesFromMousePosts(props.mouseData);
   const toggleFilterValue = useMouseFilterStore(
     (state) => state.toggleFilterValue,
   );

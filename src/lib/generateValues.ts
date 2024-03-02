@@ -8,37 +8,68 @@ export function generateBrandNamesFromMousePosts(mousePosts: MousePost[]) {
   return Array.from(brandNames);
 }
 
-export function generateValueRatings() {
-  return ["1", "2", "3"];
+export function generateValueRatingsFromMousePosts(mousePosts: MousePost[]) {
+  const valueRatings: Set<string> = new Set();
+  mousePosts.forEach((mousePost) => {
+    valueRatings.add(mousePost.data.value_rating);
+  });
+  return Array.from(valueRatings);
 }
 
-export function generateMouseShapes() {
-  return ["Ambidextrous", "Ergonomic", "Egg-shape"];
+export function generateMouseShapesFromMousePosts(mousePosts: MousePost[]) {
+  const mouseShapes: Set<string> = new Set();
+  mousePosts.forEach((mousePost) => {
+    mouseShapes.add(mousePost.data.mouse_shape_type);
+  });
+  return Array.from(mouseShapes);
 }
 
-export function generatePriceRanges() {
-  return [
-    "Under 200 Ribu",
-    "200 Ribu - 500 Ribu",
-    "500 Ribu - 1 Juta",
-    "1 Juta - 1.5 Juta",
-    "1.5 Juta - 2 Juta",
-    "Diatas 2 Juta",
-  ];
+export function generatePriceRangesFromMousePosts(mousePosts: MousePost[]) {
+  const priceRanges: Set<string> = new Set();
+  mousePosts.forEach((mousePost) => {
+    priceRanges.add(mousePost.data.price_range);
+  });
+  return Array.from(priceRanges);
 }
 
-export function generateRanks() {
-  return ["S", "A+", "A", "B+", "B", "C+", "C", "F"];
+export function generateRanksFromMousePosts(mousePosts: MousePost[]) {
+  const ranks: Set<string> = new Set();
+  mousePosts.forEach((mousePost) => {
+    ranks.add(mousePost.data.rank);
+  });
+  return Array.from(ranks).sort(
+    (a, b) => convertRankIntoNumber(a) - convertRankIntoNumber(b),
+  );
 }
 
 export function convertRankIntoNumber(rank: string) {
   //use index + 1
-  return generateRanks().indexOf(rank) + 1;
+  //rule is S < A < B < C < F
+  // A+ < A, B+ < B, C+ < C.
+  //Create a conversion function where the rule above satisfies. CONVERT TO NUMBER SO WE CAN SORT
+  return ["S", "A+", "A", "B+", "B", "C+", "C", "F"].indexOf(rank[0]) + 1;
 }
 
-export function generateSizes() {
-  return ["S", "S-M", "M-L", "L"];
+export function generateMouseSizesFromMousePosts(mousePosts: MousePost[]) {
+  const mouseSizes: Set<string> = new Set();
+  mousePosts.forEach((mousePost) => {
+    mouseSizes.add(mousePost.data.size);
+  });
+  return Array.from(mouseSizes);
 }
+
+// export function convertPriceRangeToSortableRange(range: string) {
+//   //range is a string, we want to convert it to a number so we can sort it
+//   //range is in bahasa with these format (see examples)
+//   //"the under format": "Under XXX Ribu"
+//   //the between format: "XXX Ribu - X juta"
+//   //the above format: "Diatas X Juta" or "X Juta Keatas"
+//   // we want to convert it to a number so we can sort it
+//   //1. Find the numbers
+//   const numbers = range.matchAll(
+//   //2. Find the multiplier, either Ribu or Juta
+
+// }
 
 export const mousepadPrices = [
   "Under 100 Ribu",

@@ -18,6 +18,7 @@ export type MousepadFilters = {
 export type FilterTypes = keyof MouseFilters;
 
 export interface MouseFiltersState {
+  // fetchAllMouse(): MousePost[];
   searchTerm?: string;
   filters: MouseFilters;
   toggleFilterValue(filterType: FilterTypes, value: string): void;
