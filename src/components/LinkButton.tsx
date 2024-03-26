@@ -5,6 +5,7 @@ type LinkButtonProps = {
     | "discord"
     | "instagram"
     | "tiktok"
+    | "shopee"
     | "tokopedia"
     | "misc"
     | "misc-inverted"
