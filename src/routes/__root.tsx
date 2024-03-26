@@ -1,7 +1,7 @@
 import MouseAbout from "@/components/about/MouseAbout";
 import MousepadAbout from "@/components/about/MousepadAbout";
 import SlideoutButton from "@/components/sections/SlideoutButton";
-import VariousLinksSection from "@/components/sections/VariousLinksSection";
+import SocialLinksSection from "@/components/sections/SocialLinksSection";
 import {
   createRootRoute,
   Outlet,
@@ -11,8 +11,11 @@ import posthog from "posthog-js";
 
 import type { ContentType } from "../consts";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomTabs from "@/components/ui/customTabs";
+import { getAllLinkInBio, LinkInBio } from "@/api/prismic";
+import SlideoutSection from "@/components/sections/SlideoutSection";
+import LinkButton from "@/components/LinkButton";
 
 function Root() {
   const router = useRouterState();
@@ -26,6 +29,16 @@ function Root() {
   const [aboutOpened, setAboutOpened] = useState<ContentType | null>(null);
 
   const [variousLinksOpened, setVariousLinksOpened] = useState(false);
+  const [socialMediaLinksOpened, setSocialMediaLinksOpened] = useState(false);
+  const [allVariousLinks, setAllVariousLinks] = useState<LinkInBio[]>([]);
+
+  useEffect(() => {
+    const fetchLinkInBio = async () => {
+      const d = await getAllLinkInBio();
+      setAllVariousLinks(d);
+    };
+    fetchLinkInBio();
+  }, []);
 
   const setAboutSectionBasedOnContentType = (open: boolean) => {
     posthog.capture("About Section Toggled", {
@@ -44,13 +57,32 @@ function Root() {
             content="Ini apaan?!"
           />
           <SlideoutButton
+            opened={socialMediaLinksOpened}
+            setOpened={setSocialMediaLinksOpened}
+            content="Link Sosial Media DRiFT"
+          />
+          <SlideoutButton
             opened={variousLinksOpened}
             setOpened={setVariousLinksOpened}
-            content="Link Lainnya (Discord, dll.)"
+            content="Link Lain-lain"
           />
         </div>
         <div className="flex justify-center items-center gap-4 w-full flex-wrap">
-          <VariousLinksSection opened={variousLinksOpened} />
+          <SocialLinksSection opened={socialMediaLinksOpened} />
+          <SlideoutSection opened={variousLinksOpened}>
+            <div className="flex justify-center items-center gap-4 w-full flex-wrap">
+              {allVariousLinks.map((link) => {
+                return (
+                  <LinkButton
+                    key={link.id}
+                    content={link.data.title}
+                    href={link.data.url.url}
+                    type={link.data.type}
+                  />
+                );
+              })}
+            </div>
+          </SlideoutSection>
           <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
             <CustomTabs to="/">Mouse</CustomTabs>
             <CustomTabs to="/mousepad">Mousepad</CustomTabs>

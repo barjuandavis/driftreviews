@@ -1,4 +1,5 @@
 type LinkButtonProps = {
+  key?: string;
   href: string;
   content: string;
   type:
@@ -14,6 +15,7 @@ type LinkButtonProps = {
 };
 
 export default function LinkButton({
+  key,
   href,
   content = "",
   type = "misc",
@@ -21,6 +23,7 @@ export default function LinkButton({
 }: LinkButtonProps) {
   return (
     <a
+      key={key}
       className={
         className ? `${className} link-button ${type}` : `link-button ${type}`
       }

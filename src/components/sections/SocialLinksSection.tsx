@@ -26,36 +26,6 @@ export default function VariousLinksSection(props: { opened: boolean }) {
           content="Saweria"
           type="misc-inverted"
         />
-        <LinkButton
-          href="https://github.com/barjuandavis"
-          content="Github"
-          type="misc-inverted"
-        />
-        <LinkButton
-          href="https://tokopedia.link/LCbijyxYSBb"
-          content="Manset/Armsleeve"
-          type="tokopedia"
-        />
-        <LinkButton
-          href="https://tokopedia.link/sz3CkOEixBb"
-          content="USB Extension"
-          type="tokopedia"
-        />
-        <LinkButton
-          href="https://tokopedia.link/IrUV7MmXDEb"
-          content="Grip Tape Universal"
-          type="tokopedia"
-        />
-        <LinkButton
-          href="https://tokopedia.link/YRWxqE9t2Eb"
-          content="Mouse Feet Dot Skates Tiger Arc"
-          type="tokopedia"
-        />
-        <LinkButton
-          href="https://www.tokopedia.com/drift-thrift?utm_source=driftreviews"
-          content="Toped Barang Sekennya DRiFT"
-          type="tokopedia"
-        />
       </div>
     </SlideoutSection>
   );

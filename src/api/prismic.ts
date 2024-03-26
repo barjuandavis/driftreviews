@@ -12,6 +12,22 @@ export interface Post {
   data: unknown;
 }
 
+export interface LinkInBio extends Post {
+  data: {
+    title: string;
+    type:
+      | "discord"
+      | "instagram"
+      | "tiktok"
+      | "shopee"
+      | "tokopedia"
+      | "misc"
+      | "misc-inverted"
+      | "confirmed";
+    url: AffiliateLink;
+  };
+}
+
 export interface KeyboardPost extends Post {
   data: Keyboard;
 }
@@ -126,6 +142,11 @@ export const getAllItemByType = async (type: string) => {
     };
   });
   return doc as Post[];
+};
+
+export const getAllLinkInBio = async () => {
+  const prismicDoc = (await getAllItemByType("link_in_bio")) as LinkInBio[];
+  return prismicDoc;
 };
 
 export const getAllMouse = async () => {
