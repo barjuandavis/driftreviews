@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import MouseUICard from "./MouseUICard";
+import MouseUICardV2 from "./MouseUICardV2";
 
 import { MousePost, getAllMouse } from "../../api/prismic";
 import { AnimatePresence } from "framer-motion";
@@ -81,7 +81,7 @@ export default function NewMouseList() {
           {loading && <LoadingScreen key="just-a-loading-screen" />}
           {filteredMouse.length > 0 && !loading ? (
             filteredMouse.map((mouse) => (
-              <MouseUICard key={mouse.id} mousePost={mouse} />
+              <MouseUICardV2 key={mouse.id} mousePost={mouse} />
             ))
           ) : (
             <MouseNotFoundSection />

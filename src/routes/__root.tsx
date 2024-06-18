@@ -16,6 +16,7 @@ import CustomTabs from "@/components/ui/customTabs";
 import { getAllLinkInBio, LinkInBio } from "@/api/prismic";
 import SlideoutSection from "@/components/sections/SlideoutSection";
 import LinkButton from "@/components/LinkButton";
+import { Navbar } from "@/components/component/navbar";
 
 function Root() {
   const router = useRouterState();
@@ -47,10 +48,12 @@ function Root() {
     setAboutOpened(open ? itemType : null);
   };
   return (
-    <main>
-      <h1>List Rekomendasi Gaming Gear by DRiFT (@barjuandavis)</h1>
-      <div className="flex w-full flex-col gap-4">
-        <div className="flex justify-center items-center gap-4 w-full flex-wrap">
+    <>
+      <Navbar></Navbar>
+      <main>
+        {/* <h1>List Rekomendasi Gaming Gear by DRiFT (@barjuandavis)</h1> */}
+        <div className="flex w-full flex-col gap-4">
+          {/* <div className="flex justify-center items-center gap-4 w-full flex-wrap">
           <SlideoutButton
             opened={aboutOpened !== null}
             setOpened={setAboutSectionBasedOnContentType}
@@ -66,9 +69,9 @@ function Root() {
             setOpened={setVariousLinksOpened}
             content="Link Lain-lain"
           />
-        </div>
-        <div className="flex justify-center items-center gap-4 w-full flex-wrap">
-          <SocialLinksSection opened={socialMediaLinksOpened} />
+        </div> */}
+          <div className="flex justify-center items-center gap-4 w-full flex-wrap">
+            {/* <SocialLinksSection opened={socialMediaLinksOpened} />
           <SlideoutSection opened={variousLinksOpened}>
             <div className="flex justify-center items-center gap-4 w-full flex-wrap">
               {allVariousLinks.map((link) => {
@@ -82,24 +85,25 @@ function Root() {
                 );
               })}
             </div>
-          </SlideoutSection>
-          <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
-            <CustomTabs to="/">Mouse</CustomTabs>
-            <CustomTabs to="/mousepad">Mousepad</CustomTabs>
-            <CustomTabs to="/keyboard">Keyboard</CustomTabs>
+          </SlideoutSection> */}
+            <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground">
+              <CustomTabs to="/">Mouse</CustomTabs>
+              <CustomTabs to="/mousepad">Mousepad</CustomTabs>
+              <CustomTabs to="/keyboard">Keyboard</CustomTabs>
+            </div>
+            <Outlet />
+            <MouseAbout
+              opened={aboutOpened === "mouse"}
+              setOpen={setAboutSectionBasedOnContentType}
+            />
+            <MousepadAbout
+              opened={aboutOpened === "mousepad"}
+              setOpen={setAboutSectionBasedOnContentType}
+            />
           </div>
-          <Outlet />
-          <MouseAbout
-            opened={aboutOpened === "mouse"}
-            setOpen={setAboutSectionBasedOnContentType}
-          />
-          <MousepadAbout
-            opened={aboutOpened === "mousepad"}
-            setOpen={setAboutSectionBasedOnContentType}
-          />
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
 
