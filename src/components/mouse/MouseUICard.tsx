@@ -23,6 +23,10 @@ export default function MouseUICard(props: MouseUICardProps) {
   const data = props.mousePost.data;
   const [tokopediaWarningOpened, setTokopediaWarningOpened] =
     React.useState(false);
+  const tiktokLink =
+    data?.review_content_embed?.embed_url ??
+    data?.review_content_embed_alternate?.url;
+
   return (
     <motion.div
       //animation stuff
@@ -117,17 +121,17 @@ export default function MouseUICard(props: MouseUICardProps) {
           </a>
 
           <a
-            href={data?.review_content_embed?.embed_url}
+            href={tiktokLink}
             onClick={() => {
               posthog.capture("Tiktok Link Clicked", {
                 mouse_name: data?.mouse_name_short,
-                tiktok_link: data?.review_content_embed?.embed_url,
+                tiktok_link: tiktokLink,
               });
             }}
             target="_blank"
             rel="noopener noreferrer"
             className={
-              data?.review_content_embed?.embed_url === undefined
+              tiktokLink === undefined
                 ? "link-button disabled-link-button"
                 : "link-button tiktok"
             }
