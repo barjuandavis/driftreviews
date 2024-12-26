@@ -49,7 +49,7 @@ export function cleanUpPriceRange(range: string) {
 }
 
 export function convertRankIntoNumber(rank: string) {
-  return ["S", "A+", "A", "B+", "B", "C+", "C", "F"].indexOf(rank[0]) + 1;
+  return ["S", "A+", "A", "B+", "B", "C+", "C", "F"].indexOf(rank) + 1;
 }
 
 export function generateMouseSizesFromMousePosts(mousePosts: MousePost[]) {

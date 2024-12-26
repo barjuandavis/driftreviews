@@ -53,14 +53,14 @@ export default function NewMouseList() {
       //check if every "checks" statements is true
       return checks.reduce((acc, curr) => acc && curr, true);
     })
+    .sort(
+      (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating),
+    )
     .sort((a, b) => {
       return (
         convertRankIntoNumber(a.data.rank) - convertRankIntoNumber(b.data.rank)
       );
-    })
-    .sort(
-      (a, b) => parseInt(b.data.value_rating) - parseInt(a.data.value_rating),
-    );
+    });
 
   return (
     <div className="flex flex-col gap-4 w-full">

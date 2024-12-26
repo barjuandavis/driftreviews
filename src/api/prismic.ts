@@ -85,12 +85,15 @@ export type AffiliateLink = {
   target: string;
 };
 
+export interface ReviewContentEmbedAlternate extends AffiliateLink {}
+
 export interface Item {
   rank: string;
   brand: Brand;
   price_range: string;
   value_rating: string;
   review_content_embed: ReviewContentEmbed;
+  review_content_embed_alternate: ReviewContentEmbedAlternate;
   affiliate_link: AffiliateLink;
   affiliate_link_tokopedia: AffiliateLink;
 }
