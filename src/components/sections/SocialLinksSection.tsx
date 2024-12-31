@@ -6,6 +6,12 @@ export default function VariousLinksSection(props: { opened: boolean }) {
     <SlideoutSection opened={props.opened}>
       <div className="flex justify-center items-center gap-4 w-full flex-wrap">
         <LinkButton
+          href="https://saweria.co/barjuandavis"
+          className="!bg-red-800 !text-white"
+          content="Youtube"
+          type="misc"
+        />
+        <LinkButton
           href="https://discord.gg/cG7nKg4KqY"
           content="Discord"
           type="discord"
